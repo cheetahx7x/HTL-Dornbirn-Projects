@@ -27,15 +27,6 @@ namespace _003_Tetris
 
 
 
-            // Docken der Picturebox an die Form
-            picturebox_T.Dock = DockStyle.Fill;
-            picturebox_T.BackColor = Color.White;
-
-            // Paint Methode
-            picturebox_T.Paint += new System.Windows.Forms.PaintEventHandler(this.Tetris_Paint);
-
-            // Picturebox Controls zur Form hinzufügen
-            this.Controls.Add(picturebox_T);
         }
 
         private void Tetris_Blocks(object sender, EventArgs e)
