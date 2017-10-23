@@ -75,11 +75,9 @@ namespace _003_Tetris
         {
             Random rnd = new Random();
 
-            if ()
-            {
-                int iRandom = rnd.Next(0, Blocks.Count()-1);
-                e.Graphics.DrawPolygon(My_Pen, Blocks[iRandom].ToArray());
-                e.Graphics.FillPolygon(Brushes.Black, Blocks[iRandom].ToArray());
+            int iRandom = rnd.Next(0, Blocks.Count()-1);
+            e.Graphics.DrawPolygon(My_Pen, Blocks[iRandom].ToArray());
+            e.Graphics.FillPolygon(Brushes.Black, Blocks[iRandom].ToArray());
 
             }
 
