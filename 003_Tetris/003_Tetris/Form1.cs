@@ -21,8 +21,6 @@ namespace _003_Tetris
 
         List<List<Point>> Blocks = new List<List<Point>>();
 
-        private PictureBox picturebox_T = new PictureBox();
-
         private void Tetris_Load(object sender, EventArgs e)
         {
 
@@ -75,14 +73,9 @@ namespace _003_Tetris
         {
             Random rnd = new Random();
 
-            int iRandom = rnd.Next(0, Blocks.Count()-1);
-            e.Graphics.DrawPolygon(My_Pen, Blocks[iRandom].ToArray());
-            e.Graphics.FillPolygon(Brushes.Black, Blocks[iRandom].ToArray());
-
-            }
-
-
-
+            //int iRandom = rnd.Next(0, Blocks.Count()-1);
+            //e.Graphics.DrawPolygon(My_Pen, Blocks[iRandom].ToArray());
+            //e.Graphics.FillPolygon(Brushes.Black, Blocks[iRandom].ToArray());
 
         }
     }
