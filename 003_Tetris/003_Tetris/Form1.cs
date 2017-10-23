@@ -17,9 +17,10 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
-        private Pen My_Pen = new Pen(Brushes.Black);
-
         List<List<Point>> Blocks = new List<List<Point>>();
+
+        List<Point> NextBlock = new List<Point>();
+        List<Point> CurrentBlock = new List<Point>();
 
         private void Tetris_Load(object sender, EventArgs e)
         {
@@ -62,12 +63,21 @@ namespace _003_Tetris
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+            e.Graphics.DrawPolygon(Pens.Transparent, CurrentBlock.ToArray());
+            e.Graphics.FillPolygon(Brushes.Black, CurrentBlock.ToArray());
+        }
+
+        private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            e.Graphics.DrawPolygon(Pens.Transparent, NextBlock.ToArray());
+            e.Graphics.FillPolygon(Brushes.Black, NextBlock.ToArray());
+        }
+
+        private void GenerateNextBlock()
+        {
             Random rnd = new Random();
-
-            //int iRandom = rnd.Next(0, Blocks.Count()-1);
-            //e.Graphics.DrawPolygon(My_Pen, Blocks[iRandom].ToArray());
-            //e.Graphics.FillPolygon(Brushes.Black, Blocks[iRandom].ToArray());
-
+            CurrentBlock = NextBlock;
+            NextBlock = Blocks[rnd.Next(0, (Blocks.Count - 1))];
         }
     }
 }

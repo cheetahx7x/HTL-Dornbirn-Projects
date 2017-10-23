@@ -42,6 +42,7 @@
             this.picturebox_T.Size = new System.Drawing.Size(600, 844);
             this.picturebox_T.TabIndex = 0;
             this.picturebox_T.TabStop = false;
+            this.picturebox_T.Paint += new System.Windows.Forms.PaintEventHandler(this.Tetris_Paint);
             // 
             // picturebox_preview
             // 
@@ -51,6 +52,7 @@
             this.picturebox_preview.Size = new System.Drawing.Size(87, 87);
             this.picturebox_preview.TabIndex = 1;
             this.picturebox_preview.TabStop = false;
+            this.picturebox_preview.Paint += new System.Windows.Forms.PaintEventHandler(this.Preview_Paint);
             // 
             // Tetris
             // 
