@@ -27,32 +27,30 @@ namespace _003_Tetris
 
 
 
-
+            
         }
 
         private void Tetris_Blocks(object sender, EventArgs e)
         {
-            //Mittlere Blöcke: 250-300, 300-350
+            picturebox_T.Select();
+            //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte (Mitte des 3*3 Blocks ist Links neben der Mitte von der Picturebox weil Doppelmitte)
 
-            //L-Block Left
-            Point LBlock_L1 = new Point(250, 0);
-            Point LBlock_L2 = new Point(350, 0);
-            Point LBlock_L3 = new Point(350, 150);
-            Point LBlock_L4 = new Point(300, 150);
-            Point LBlock_L5 = new Point(300, 50);
-            Point LBlock_L6 = new Point(250, 50);
-            Point LBlock_L7 = new Point(250, 0);
+            //Block Rechts Unten
+            Point B1_1 = new Point((picturebox_T.Width / 2) - 50, 0);
+            Point B1_2 = new Point((picturebox_T.Width / 2), 0);
+            Point B1_3 = new Point((picturebox_T.Width / 2), 50);
+            Point B1_4 = new Point((picturebox_T.Width / 2) - 50, 50);
 
-            List<Point> LBlock_L = new List<Point>();
-            LBlock_L.Add(LBlock_L1);
-            LBlock_L.Add(LBlock_L2);
-            LBlock_L.Add(LBlock_L3);
-            LBlock_L.Add(LBlock_L4);
-            LBlock_L.Add(LBlock_L5);
-            LBlock_L.Add(LBlock_L6);
-            LBlock_L.Add(LBlock_L7);
+            Point B2_1 = new Point((picturebox_T.Width / 2), 0);
+            Point B2_2 = new Point((picturebox_T.Width / 2) + 50, 0);
+            Point B2_3 = new Point((picturebox_T.Width / 2) + 50, 50);
+            Point B2_4 = new Point((picturebox_T.Width / 2), 50);
+            
 
-            Blocks.Add(LBlock_L);
+
+
+
+
 
 
 
