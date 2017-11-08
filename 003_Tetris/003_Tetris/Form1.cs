@@ -145,7 +145,7 @@ namespace _003_Tetris
 
             Rec_temp = new List<Rectangle>();
 
-            rectRotationCenter = B2;
+            rectRotationCenter = B5;
         }
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
