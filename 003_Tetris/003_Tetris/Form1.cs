@@ -17,6 +17,7 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
+        List<Rectangle> Blocks = new List<Rectangle>();
 
         List<List<Rectangle>> Shapes = new List<List<Rectangle>>();
 
@@ -33,6 +34,8 @@ namespace _003_Tetris
 
         private void Tetris_Shapes(object sender, EventArgs e)
         {
+            List<Rectangle> Rec_temp = new List<Rectangle>();
+
             picturebox_T.Select();
             //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte(Mitte kommt nach dem ersten linken Block weil zweiermitte)
 
@@ -69,16 +72,62 @@ namespace _003_Tetris
             //Block 5.Reihe Mitte
             Rectangle B11 = new Rectangle((picturebox_T.Width / 2), 250, 50, 50);
 
-            //L-Block Linksgedreht
-            
+            //I-Shape
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B5);
+            Rec_temp.Add(B8);
+            Rec_temp.Add(B10);
+            Rec_temp.Add(B11);
 
-            //L-Block Rechtsgedreht
-            
+            Shapes.Add(Rec_temp);
 
+            //J-Shape
+            Rec_temp.Add(B4);
+            Rec_temp.Add(B1);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B3);
 
+            Shapes.Add(Rec_temp);
 
+            //L-Shape
+            Rec_temp.Add(B1);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B3);
+            Rec_temp.Add(B6);
 
+            Shapes.Add(Rec_temp);
 
+            //O-Shape
+            Rec_temp.Add(B1);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B4);
+            Rec_temp.Add(B5);
+
+            Shapes.Add(Rec_temp);
+
+            //S-Shape
+            Rec_temp.Add(B1);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B5);
+            Rec_temp.Add(B6);
+
+            Shapes.Add(Rec_temp);
+
+            //T-Shape
+            Rec_temp.Add(B1);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B3);
+            Rec_temp.Add(B5);
+
+            Shapes.Add(Rec_temp);
+
+            //Z-Shape
+            Rec_temp.Add(B4);
+            Rec_temp.Add(B5);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B3);
+
+            Shapes.Add(Rec_temp);
 
 
 
@@ -86,14 +135,20 @@ namespace _003_Tetris
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.DrawPolygon(Pens.Transparent, CurrentShape);
-            e.Graphics.FillPolygon(Brushes.Black, CurrentShape);
+            foreach(Rectangle Rect in CurrentShape)
+            {
+                e.Graphics.DrawRectangle(Pens.Transparent, Rect);
+                e.Graphics.FillRectangle(Brushes.Black, Rect);
+            }
         }
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.DrawPolygon(Pens.Transparent, NextShape.ToArray());
-            e.Graphics.FillPolygon(Brushes.Black, NextShape.ToArray());
+            foreach(Rectangle Rect in CurrentShape)
+            {
+                e.Graphics.DrawRectangle(Pens.Transparent, Rect);
+                e.Graphics.FillRectangle(Brushes.Black, Rect);
+            }
         }
 
         private void GenerateNextShape()
