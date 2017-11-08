@@ -17,42 +17,35 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
-        List<List<Point>> Blocks = new List<List<Point>>();
+        List<Rectangle> Blocks = new List<Rectangle>();
 
-        List<Point> NextBlock = new List<Point>();
-        List<Point> CurrentBlock = new List<Point>();
+        List<List<Point>> Shapes = new List<List<Point>>();
+
+        List<Point> NextShape = new List<Point>();
+        List<Point> CurrentShape = new List<Point>();
 
         private void Tetris_Load(object sender, EventArgs e)
         {
 
 
 
-
+            
         }
 
-        private void Tetris_Blocks(object sender, EventArgs e)
+        private void Tetris_Shapes(object sender, EventArgs e)
         {
-            //Mittlere Blöcke: 250-300, 300-350
+            picturebox_T.Select();
+            //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte
 
-            //L-Block Left
-            Point LBlock_L1 = new Point(250, 0);
-            Point LBlock_L2 = new Point(350, 0);
-            Point LBlock_L3 = new Point(350, 150);
-            Point LBlock_L4 = new Point(300, 150);
-            Point LBlock_L5 = new Point(300, 50);
-            Point LBlock_L6 = new Point(250, 50);
-            Point LBlock_L7 = new Point(250, 0);
+            Point B1_1 = new Point((picturebox_T.Width / 2) - 50, 0);
+            Point B1_2 = new Point((picturebox_T.Width / 2), 0);
+            Point B1_3 = new Point((picturebox_T.Width / 2), 50);
+            Point B1_4 = new Point((picturebox_T.Width / 2) - 50, 50);
 
-            List<Point> LBlock_L = new List<Point>();
-            LBlock_L.Add(LBlock_L1);
-            LBlock_L.Add(LBlock_L2);
-            LBlock_L.Add(LBlock_L3);
-            LBlock_L.Add(LBlock_L4);
-            LBlock_L.Add(LBlock_L5);
-            LBlock_L.Add(LBlock_L6);
-            LBlock_L.Add(LBlock_L7);
 
-            Blocks.Add(LBlock_L);
+
+
+
 
 
 
@@ -63,21 +56,71 @@ namespace _003_Tetris
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.DrawPolygon(Pens.Transparent, CurrentBlock.ToArray());
-            e.Graphics.FillPolygon(Brushes.Black, CurrentBlock.ToArray());
+            e.Graphics.DrawPolygon(Pens.Transparent, CurrentShape.ToArray());
+            e.Graphics.FillPolygon(Brushes.Black, CurrentShape.ToArray());
         }
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.DrawPolygon(Pens.Transparent, NextBlock.ToArray());
-            e.Graphics.FillPolygon(Brushes.Black, NextBlock.ToArray());
+            e.Graphics.DrawPolygon(Pens.Transparent, NextShape.ToArray());
+            e.Graphics.FillPolygon(Brushes.Black, NextShape.ToArray());
         }
 
-        private void GenerateNextBlock()
+        private void GenerateNextShape()
         {
             Random rnd = new Random();
-            CurrentBlock = NextBlock;
-            NextBlock = Blocks[rnd.Next(0, (Blocks.Count - 1))];
+            CurrentShape = NextShape;
+            NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
         }
+
+        private void TestForLines()
+        {
+            Rectangle RectCollision = new Rectangle();
+            RectCollision.Width = 1;
+            RectCollision.Height = 1;
+            bool bDelete = false;
+            for(int i = picturebox_T.Height; i == 0; i -= 50)
+            {
+                bDelete = false;
+                for(int j = picturebox_T.Width; j == 0; i -= 50)
+                {
+                    RectCollision.X = j;
+                    RectCollision.Y = i;
+
+                    if (BlockCollisionDetect(RectCollision))
+                    {
+                        bDelete = true;
+                    }
+
+                }
+                if(bDelete == true)
+                {
+                    DeleteLine(i);
+                }
+                
+            }
+
+        }
+
+        private bool BlockCollisionDetect(Rectangle rectCollider)
+        {
+            bool bCollision = false;
+
+            foreach(Rectangle rectTarget in Blocks)
+            {
+                if(rectCollider.IntersectsWith(rectTarget))
+                {
+                    bCollision = true;
+                    break;
+                }
+            }
+            return bCollision;
+        }
+
+        private void DeleteLine(int Y)
+        {
+            //Todo
+        }
+
     }
 }
