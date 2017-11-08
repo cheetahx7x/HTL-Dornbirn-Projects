@@ -17,12 +17,11 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
-        List<Rectangle> Blocks = new List<Rectangle>();
 
-        List<List<Point>> Shapes = new List<List<Point>>();
+        List<List<Rectangle>> Shapes = new List<List<Rectangle>>();
 
-        List<Point> NextShape = new List<Point>();
-        List<Point> CurrentShape = new List<Point>();
+        List<Rectangle> NextShape = new List<Rectangle>();
+        List<Rectangle> CurrentShape = new List<Rectangle>();
 
         private void Tetris_Load(object sender, EventArgs e)
         {
@@ -35,15 +34,46 @@ namespace _003_Tetris
         private void Tetris_Shapes(object sender, EventArgs e)
         {
             picturebox_T.Select();
-            //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte
+            //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte(Mitte kommt nach dem ersten linken Block weil zweiermitte)
 
-            Point B1_1 = new Point((picturebox_T.Width / 2) - 50, 0);
-            Point B1_2 = new Point((picturebox_T.Width / 2), 0);
-            Point B1_3 = new Point((picturebox_T.Width / 2), 50);
-            Point B1_4 = new Point((picturebox_T.Width / 2) - 50, 50);
+            //Block 1 Unten Links
+            Rectangle B1 = new Rectangle((picturebox_T.Width / 2) - 50, 50, 50, 50);
 
+            //Block 2 Unten Mitte
+            Rectangle B2 = new Rectangle((picturebox_T.Width / 2), 50, 50, 50);
 
+            //Block 3 Unten Rechts
+            Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, 50, 50, 50);
 
+            //Block 4 Mitte Links
+            Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, 100, 50, 50);
+
+            //Block 5 Mitte
+            Rectangle B5 = new Rectangle((picturebox_T.Width / 2), 100, 50, 50);
+
+            //Block 6 Mitte Rechts
+            Rectangle B6 = new Rectangle((picturebox_T.Width / 2) + 50, 100, 50, 50);
+
+            //Block 7 Oben Links
+            Rectangle B7 = new Rectangle((picturebox_T.Width / 2) - 50, 150, 50, 50);
+
+            //Block 8 Oben Mitte
+            Rectangle B8 = new Rectangle((picturebox_T.Width / 2), 150, 50, 50);
+
+            //Block 9 Oben Rechts
+            Rectangle B9 = new Rectangle((picturebox_T.Width / 2) + 50, 150, 50, 50);
+
+            //Block 4.Reihe Mitte
+            Rectangle B10 = new Rectangle((picturebox_T.Width / 2), 200, 50, 50);
+
+            //Block 5.Reihe Mitte
+            Rectangle B11 = new Rectangle((picturebox_T.Width / 2), 250, 50, 50);
+
+            //L-Block Linksgedreht
+            
+
+            //L-Block Rechtsgedreht
+            
 
 
 
@@ -56,8 +86,8 @@ namespace _003_Tetris
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.DrawPolygon(Pens.Transparent, CurrentShape.ToArray());
-            e.Graphics.FillPolygon(Brushes.Black, CurrentShape.ToArray());
+            e.Graphics.DrawPolygon(Pens.Transparent, CurrentShape);
+            e.Graphics.FillPolygon(Brushes.Black, CurrentShape);
         }
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
