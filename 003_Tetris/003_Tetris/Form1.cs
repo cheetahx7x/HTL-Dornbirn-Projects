@@ -27,6 +27,8 @@ namespace _003_Tetris
         List<Rectangle> NextShape = new List<Rectangle>();
         List<Rectangle> CurrentShape = new List<Rectangle>();
 
+        Rectangle rectRotationCenter = new Rectangle();
+
         private void Tetris_Load(object sender, EventArgs e)
         {
             Tetris_Shapes();
@@ -44,34 +46,34 @@ namespace _003_Tetris
             //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte(Mitte kommt nach dem ersten linken Block weil zweiermitte)
 
             //Block 1 Unten Links
-            Rectangle B1 = new Rectangle((picturebox_T.Width / 2) - 50, 50, 50, 50);
+            Rectangle B1 = new Rectangle((picturebox_T.Width / 2) - 50, -50, 50, 50);
 
             //Block 2 Unten Mitte
-            Rectangle B2 = new Rectangle((picturebox_T.Width / 2), 50, 50, 50);
+            Rectangle B2 = new Rectangle((picturebox_T.Width / 2), -50, 50, 50);
 
             //Block 3 Unten Rechts
-            Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, 50, 50, 50);
+            Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, -50, 50, 50);
 
             //Block 4 Mitte Links
-            Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, 100, 50, 50);
+            Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, -100, 50, 50);
 
             //Block 5 Mitte
-            Rectangle B5 = new Rectangle((picturebox_T.Width / 2), 100, 50, 50);
+            Rectangle B5 = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);   //Mitte der Rotation
 
             //Block 6 Mitte Rechts
-            Rectangle B6 = new Rectangle((picturebox_T.Width / 2) + 50, 100, 50, 50);
+            Rectangle B6 = new Rectangle((picturebox_T.Width / 2) + 50, -100, 50, 50);
 
             //Block 7 Oben Links
-            Rectangle B7 = new Rectangle((picturebox_T.Width / 2) - 50, 150, 50, 50);
+            Rectangle B7 = new Rectangle((picturebox_T.Width / 2) - 50, -150, 50, 50);
 
             //Block 8 Oben Mitte
-            Rectangle B8 = new Rectangle((picturebox_T.Width / 2), 150, 50, 50);
+            Rectangle B8 = new Rectangle((picturebox_T.Width / 2), -150, 50, 50);
 
             //Block 9 Oben Rechts
-            Rectangle B9 = new Rectangle((picturebox_T.Width / 2) + 50, 150, 50, 50);
+            Rectangle B9 = new Rectangle((picturebox_T.Width / 2) + 50, -150, 50, 50);
 
             //Block 4.Reihe Mitte
-            Rectangle B10 = new Rectangle((picturebox_T.Width / 2), 200, 50, 50);
+            Rectangle B10 = new Rectangle((picturebox_T.Width / 2), -200, 50, 50);
 
             //I-Shape
             Rec_temp.Add(B2);
@@ -124,10 +126,10 @@ namespace _003_Tetris
             Rec_temp = new List<Rectangle>();
 
             //T-Shape
-            Rec_temp.Add(B1);
             Rec_temp.Add(B2);
-            Rec_temp.Add(B3);
+            Rec_temp.Add(B4);
             Rec_temp.Add(B5);
+            Rec_temp.Add(B6);
 
             Shapes.Add(Rec_temp);
 
@@ -142,6 +144,8 @@ namespace _003_Tetris
             Shapes.Add(Rec_temp);
 
             Rec_temp = new List<Rectangle>();
+
+            rectRotationCenter = B2;
         }
 
         private void Tetris_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
@@ -234,8 +238,7 @@ namespace _003_Tetris
                 temp.Y += 50;
                 CurrentShape[i] = temp;
             }
-
-
+            rectRotationCenter.Y += 50;
 
             picturebox_T.Invalidate();
         }
@@ -267,6 +270,7 @@ namespace _003_Tetris
                     temp.X -= 50;
                     CurrentShape[i] = temp;
                 }
+                rectRotationCenter.X -= 50;
 
                 if (!IsCurrentShapeInside())
                 {
@@ -276,9 +280,11 @@ namespace _003_Tetris
                         temp.X += 50;
                         CurrentShape[i] = temp;
                     }
+                    rectRotationCenter.X += 50;
                 }
 
-            } else if (e.KeyCode == Keys.Right)
+            }
+            else if (e.KeyCode == Keys.Right)
             {
                 for (int i = 0; i < CurrentShape.Count; i++)
                 {
@@ -286,6 +292,7 @@ namespace _003_Tetris
                     temp.X += 50;
                     CurrentShape[i] = temp;
                 }
+                rectRotationCenter.X += 50;
 
                 if (!IsCurrentShapeInside())
                 {
@@ -295,8 +302,10 @@ namespace _003_Tetris
                         temp.X -= 50;
                         CurrentShape[i] = temp;
                     }
+                    rectRotationCenter.X -= 50;
                 }
-            } else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
+            }
+            else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
             {
                 for (int i = 0; i < CurrentShape.Count; i++)
                 {
@@ -304,7 +313,12 @@ namespace _003_Tetris
                     temp.Y += 50;
                     CurrentShape[i] = temp;
                 }
+                rectRotationCenter.Y += 50;
                 timerFalling.Interval = 200;
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SpinShape();
             }
 
 
@@ -316,6 +330,19 @@ namespace _003_Tetris
             if (e.KeyCode == Keys.Down)
             {
                 timerFalling.Interval = 1000;
+            }
+        }
+
+        private void SpinShape()
+        {
+            Rectangle temp = new Rectangle();
+
+            for(int i = 0; i < CurrentShape.Count; i++)
+            {
+                temp = CurrentShape[i];
+                temp.Y = rectRotationCenter.Y + (CurrentShape[i].X - rectRotationCenter.X);
+                temp.X = rectRotationCenter.X - (CurrentShape[i].Y - rectRotationCenter.Y);
+                CurrentShape[i] = temp;
             }
         }
     }
