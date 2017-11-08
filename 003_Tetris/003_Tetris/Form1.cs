@@ -17,6 +17,8 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
+        Timer timerFalling = new Timer();
+
         List<Rectangle> Rec_temp = new List<Rectangle>();
         List<Rectangle> Blocks = new List<Rectangle>();
 
@@ -30,9 +32,11 @@ namespace _003_Tetris
             Tetris_Shapes();
             GenerateNextShape();
             GenerateNextShape();
-
-            
+            timerFalling.Tick += new EventHandler(this.TimerEventFalling);
+            timerFalling.Interval = 1000;
+            timerFalling.Start();
         }
+
 
         private void Tetris_Shapes()
         {
@@ -211,8 +215,108 @@ namespace _003_Tetris
 
         private void DeleteLine(int Y)
         {
-            //Todo
+            foreach(Rectangle rect in Blocks)
+            {
+                if(rect.Y == Y)
+                {
+                    Blocks.Remove(rect);
+                }
+            }
         }
 
+        private void TimerEventFalling(object sender, EventArgs e)
+        {
+            Rectangle temp = new Rectangle();
+
+            for(int i = 0; i < CurrentShape.Count; i++)
+            {
+                temp = CurrentShape[i];
+                temp.Y += 50;
+                CurrentShape[i] = temp;
+            }
+
+
+
+            picturebox_T.Invalidate();
+        }
+
+        private bool IsCurrentShapeInside()
+        {
+            bool bInside = true;
+
+            foreach(Rectangle rect in CurrentShape)
+            {
+                if(rect.X < 0 || rect.Right > picturebox_T.Width)
+                {
+                    bInside = false;
+                }
+            }
+
+            return bInside;
+        }
+
+        private void Tetris_KeyDown(object sender, KeyEventArgs e)
+        {
+            Rectangle temp = new Rectangle();
+
+            if (e.KeyCode == Keys.Left)
+            {
+                for (int i = 0; i < CurrentShape.Count; i++)
+                {
+                    temp = CurrentShape[i];
+                    temp.X -= 50;
+                    CurrentShape[i] = temp;
+                }
+
+                if (!IsCurrentShapeInside())
+                {
+                    for (int i = 0; i < CurrentShape.Count; i++)
+                    {
+                        temp = CurrentShape[i];
+                        temp.X += 50;
+                        CurrentShape[i] = temp;
+                    }
+                }
+
+            } else if (e.KeyCode == Keys.Right)
+            {
+                for (int i = 0; i < CurrentShape.Count; i++)
+                {
+                    temp = CurrentShape[i];
+                    temp.X += 50;
+                    CurrentShape[i] = temp;
+                }
+
+                if (!IsCurrentShapeInside())
+                {
+                    for (int i = 0; i < CurrentShape.Count; i++)
+                    {
+                        temp = CurrentShape[i];
+                        temp.X -= 50;
+                        CurrentShape[i] = temp;
+                    }
+                }
+            } else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
+            {
+                for (int i = 0; i < CurrentShape.Count; i++)
+                {
+                    temp = CurrentShape[i];
+                    temp.Y += 50;
+                    CurrentShape[i] = temp;
+                }
+                timerFalling.Interval = 200;
+            }
+
+
+            picturebox_T.Invalidate();
+        }
+
+        private void Tetris_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                timerFalling.Interval = 1000;
+            }
+        }
     }
 }

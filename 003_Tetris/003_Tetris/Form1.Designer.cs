@@ -62,12 +62,15 @@
             this.ClientSize = new System.Drawing.Size(634, 961);
             this.Controls.Add(this.picturebox_preview);
             this.Controls.Add(this.picturebox_T);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Tetris";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tetris";
             this.Load += new System.EventHandler(this.Tetris_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tetris_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Tetris_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_T)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_preview)).EndInit();
             this.ResumeLayout(false);
