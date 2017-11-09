@@ -155,18 +155,18 @@ namespace _003_Tetris
             foreach(Rectangle Rect in CurrentShape)
             {
                 e.Graphics.DrawRectangle(Pens.Transparent, Rect);
-                e.Graphics.FillRectangle(Brushes.Black, Rect);
+                e.Graphics.FillRectangle(Brushes.Blue, Rect);
             }
             foreach (Rectangle Rect in Blocks)
             {
                 e.Graphics.DrawRectangle(Pens.Transparent, Rect);
-                e.Graphics.FillRectangle(Brushes.Blue, Rect);
+                e.Graphics.FillRectangle(Brushes.Black, Rect);
             }
         }
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            foreach(Rectangle Rect in CurrentShape)
+            foreach(Rectangle Rect in NextShape)
             {
                 e.Graphics.DrawRectangle(Pens.Transparent, Rect);
                 e.Graphics.FillRectangle(Brushes.Black, Rect);
@@ -176,14 +176,15 @@ namespace _003_Tetris
         private void GenerateNextShape()
         {
             List<Rectangle> Rec_temp = new List<Rectangle>();
+            Tetris_Shapes();
 
             Random rnd = new Random();
             CurrentShape = new List<Rectangle>();
             CurrentShape = NextShape;
             NextShape = new List<Rectangle>();
-            //NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
+            NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
             //NextShape = Shapes[0];
-            
+            /*
             Rectangle B2 = new Rectangle((picturebox_T.Width / 2), -50, 50, 50);//Block 3 Unten Rechts
             Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, -50, 50, 50);//Block 4 Mitte Links
             Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, -100, 50, 50); //Block 5 Mitte
@@ -194,8 +195,7 @@ namespace _003_Tetris
             Rec_temp.Add(B5);
             Rec_temp.Add(B6);
             NextShape = Rec_temp;
-            
-
+            */
 
 
             rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
@@ -204,29 +204,51 @@ namespace _003_Tetris
         private void TestForLines()
         {
             Rectangle RectCollision = new Rectangle();
-            RectCollision.Width = 1;
-            RectCollision.Height = 1;
+            RectCollision.Width = picturebox_T.Width;
+            RectCollision.X = 0;
+            RectCollision.Height = 50;
             bool bDelete = false;
+            /*
             for(int i = picturebox_T.Height; i == 0; i -= 50)
             {
-                bDelete = false;
+                bDelete = true;
                 for(int j = picturebox_T.Width; j == 0; i -= 50)
                 {
-                    RectCollision.X = j;
                     RectCollision.Y = i;
 
-                    if (BlockCollisionDetect(RectCollision))
+                    if (!(BlockCollisionDetect(RectCollision)))
                     {
-                        bDelete = true;
+                        bDelete = false;
                     }
-
                 }
-                if(bDelete == true)
+                if(bDelete != false)
                 {
                     DeleteLine(i);
                 }
                 
             }
+            */
+            for(int i = 0; i<(picturebox_T.Height / 50); i++)
+            {
+                bDelete = false;
+                for(int j = 0;j< (picturebox_T.Width / 50); j++)
+                {
+                    RectCollision.Y = i * 50;
+
+                    foreach(Rectangle block in Blocks)
+                    {
+                        if (block.Y == i * 50 && !(RectCollision.IntersectsWith(block)))
+                        {
+                            bDelete = true;
+                        }
+                    }
+                }
+                if(bDelete)
+                {
+                    DeleteLine(i*50);
+                }
+            }
+
 
         }
 
@@ -246,11 +268,12 @@ namespace _003_Tetris
 
         private void DeleteLine(int Y)
         {
-            foreach(Rectangle rect in Blocks)
+            for(int i = 0; i < Blocks.Count; i++)
             {
-                if(rect.Y == Y)
+                if (Blocks[i].Y == Y)
                 {
-                    Blocks.Remove(rect);
+                    Blocks.RemoveAt(i);
+                    i--;
                 }
             }
         }
@@ -364,7 +387,10 @@ namespace _003_Tetris
             {
                 SpinShape();
             }
-
+            //if(e.KeyCode == Keys.K)
+            //{
+            //    DeleteLine(800);
+            //}
 
             picturebox_T.Invalidate();
         }
@@ -424,7 +450,7 @@ namespace _003_Tetris
                     }
                 }
             }
-            if (bRightOutside)
+            if(bRightOutside)
             {
                 for (int j = 0; bRightOutside; j++)
                 {
@@ -446,6 +472,16 @@ namespace _003_Tetris
                 }
             }
 
+            //if (CurrentShapeCollisionDetect())
+            //{
+            //    for (int i = 0; i < CurrentShape.Count; i++)
+            //    {
+            //        temp = CurrentShape[i];
+            //        temp.Y = rectRotationCenter.Y - (CurrentShape[i].X - rectRotationCenter.X);
+            //        temp.X = rectRotationCenter.X + (CurrentShape[i].Y - rectRotationCenter.Y);
+            //        CurrentShape[i] = temp;
+            //    }
+            //}
         }
 
         private void BottomHit()
@@ -454,6 +490,7 @@ namespace _003_Tetris
             {
                 Blocks.Add(rect);
             }
+            TestForLines();
             GenerateNextShape();
         }
 
