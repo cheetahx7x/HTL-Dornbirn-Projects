@@ -333,7 +333,7 @@ namespace _003_Tetris
                 }
                 rectRotationCenter.X -= 50;
 
-                if (!IsCurrentShapeInside())
+                if (!IsCurrentShapeInside() || CurrentShapeCollisionDetect())
                 {
                     for (int i = 0; i < CurrentShape.Count; i++)
                     {
@@ -355,7 +355,7 @@ namespace _003_Tetris
                 }
                 rectRotationCenter.X += 50;
 
-                if (!IsCurrentShapeInside())
+                if (!IsCurrentShapeInside() || CurrentShapeCollisionDetect())
                 {
                     for (int i = 0; i < CurrentShape.Count; i++)
                     {
@@ -365,6 +365,7 @@ namespace _003_Tetris
                     }
                     rectRotationCenter.X -= 50;
                 }
+
             }
             else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
             {
@@ -466,6 +467,19 @@ namespace _003_Tetris
                 Blocks.Add(rect);
             }
             GenerateNextShape();
+        }
+
+        private bool CurrentShapeCollisionDetect()
+        {
+            bool bCollision = false;
+            foreach (Rectangle rect in CurrentShape)
+            {
+                if (BlockCollisionDetect(rect))
+                {
+                    bCollision = true;
+                }
+            }
+            return bCollision;
         }
     }
 }
