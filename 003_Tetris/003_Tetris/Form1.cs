@@ -259,7 +259,6 @@ namespace _003_Tetris
         {
             Rectangle temp = new Rectangle();
             bool bBottom = false;
-            bool bCollision = false;
 
             for(int i = 0; i < CurrentShape.Count; i++)
             {
@@ -269,23 +268,16 @@ namespace _003_Tetris
             }
             rectRotationCenter.Y += 50;
 
-            foreach (Rectangle rect in CurrentShape)
-            {
-                if (!(rect.Bottom < picturebox_T.Height))
-                {
-                    bBottom = true;
-                }
-            }
             foreach(Rectangle rect in CurrentShape)
             {
-                if(BlockCollisionDetect(rect))
+                if(BlockCollisionDetect(rect) || !(rect.Bottom <= picturebox_T.Height))
                 {
-                    bCollision = true;
                     bBottom = true;
                 }
             }
             
-            if(bCollision)
+
+            if(bBottom)
             {
                 for (int i = 0; i < CurrentShape.Count; i++)
                 {
@@ -294,10 +286,6 @@ namespace _003_Tetris
                     CurrentShape[i] = temp;
                 }
                 rectRotationCenter.Y -= 50;
-            }
-
-            if(bBottom)
-            {
                 BottomHit();
             }
 
