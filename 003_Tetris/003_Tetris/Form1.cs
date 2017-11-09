@@ -155,6 +155,11 @@ namespace _003_Tetris
                 e.Graphics.DrawRectangle(Pens.Transparent, Rect);
                 e.Graphics.FillRectangle(Brushes.Black, Rect);
             }
+            foreach (Rectangle Rect in Blocks)
+            {
+                e.Graphics.DrawRectangle(Pens.Transparent, Rect);
+                e.Graphics.FillRectangle(Brushes.Blue, Rect);
+            }
         }
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
@@ -231,6 +236,7 @@ namespace _003_Tetris
         private void TimerEventFalling(object sender, EventArgs e)
         {
             Rectangle temp = new Rectangle();
+            bool bBottom = false;
 
             for(int i = 0; i < CurrentShape.Count; i++)
             {
@@ -239,6 +245,19 @@ namespace _003_Tetris
                 CurrentShape[i] = temp;
             }
             rectRotationCenter.Y += 50;
+
+            foreach (Rectangle rect in CurrentShape)
+            {
+                if (rect.Bottom >= 400)
+                {
+                    bBottom = true;
+                }
+            }
+
+            if(bBottom)
+            {
+                BottomHit();
+            }
 
             picturebox_T.Invalidate();
         }
@@ -336,6 +355,8 @@ namespace _003_Tetris
         private void SpinShape()
         {
             Rectangle temp = new Rectangle();
+            bool bLeftOutside = false;
+            bool bRightOutside = false;
 
             for(int i = 0; i < CurrentShape.Count; i++)
             {
@@ -344,6 +365,72 @@ namespace _003_Tetris
                 temp.X = rectRotationCenter.X - (CurrentShape[i].Y - rectRotationCenter.Y);
                 CurrentShape[i] = temp;
             }
+
+            foreach (Rectangle rect in CurrentShape)
+            {
+                if (rect.X < 0)
+                {
+                    bLeftOutside = true;
+                }
+                if (rect.Right > picturebox_T.Width)
+                {
+                    bRightOutside = true;
+                }
+            }
+
+            if(bLeftOutside)
+            {
+                for (int j = 0; bLeftOutside; j++)
+                {
+                    for (int i = 0; i < CurrentShape.Count(); i++)
+                    {
+                        temp = CurrentShape[i];
+                        temp.X += 50;
+                        CurrentShape[i] = temp;
+                    }
+                    rectRotationCenter.X += 50;
+
+                    foreach (Rectangle rect in CurrentShape)
+                    {
+                        if (rect.X >= 0)
+                        {
+                            bLeftOutside = false;
+                        }
+                    }
+                }
+            }
+            if (bRightOutside)
+            {
+                for (int j = 0; bRightOutside; j++)
+                {
+                    for (int i = 0; i < CurrentShape.Count(); i++)
+                    {
+                        temp = CurrentShape[i];
+                        temp.X -= 50;
+                        CurrentShape[i] = temp;
+                    }
+                    rectRotationCenter.X -= 50;
+
+                    foreach (Rectangle rect in CurrentShape)
+                    {
+                        if (rect.Right <= picturebox_T.Width)
+                        {
+                            bRightOutside = false;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void BottomHit()
+        {
+            foreach(Rectangle rect in CurrentShape)
+            {
+                Blocks.Add(rect);
+            }
+            GenerateNextShape();
+            rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
         }
     }
 }

@@ -39,7 +39,7 @@
             this.picturebox_T.BackColor = System.Drawing.Color.White;
             this.picturebox_T.Location = new System.Drawing.Point(17, 105);
             this.picturebox_T.Name = "picturebox_T";
-            this.picturebox_T.Size = new System.Drawing.Size(600, 844);
+            this.picturebox_T.Size = new System.Drawing.Size(600, 850);
             this.picturebox_T.TabIndex = 0;
             this.picturebox_T.TabStop = false;
             this.picturebox_T.Paint += new System.Windows.Forms.PaintEventHandler(this.Tetris_Paint);
