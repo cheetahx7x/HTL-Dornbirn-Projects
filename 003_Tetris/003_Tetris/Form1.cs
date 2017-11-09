@@ -19,7 +19,6 @@ namespace _003_Tetris
 
         Timer timerFalling = new Timer();
 
-        List<Rectangle> Rec_temp = new List<Rectangle>();
         List<Rectangle> Blocks = new List<Rectangle>();
 
         List<List<Rectangle>> Shapes = new List<List<Rectangle>>();
@@ -35,13 +34,16 @@ namespace _003_Tetris
             GenerateNextShape();
             GenerateNextShape();
             timerFalling.Tick += new EventHandler(this.TimerEventFalling);
-            timerFalling.Interval = 1000;
+            timerFalling.Interval = 500;
             timerFalling.Start();
         }
 
 
         private void Tetris_Shapes()
         {
+            List<Rectangle> Rec_temp = new List<Rectangle>();
+
+
             picturebox_T.Select();
             //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte(Mitte kommt nach dem ersten linken Block weil zweiermitte)
 
@@ -173,9 +175,30 @@ namespace _003_Tetris
 
         private void GenerateNextShape()
         {
+            List<Rectangle> Rec_temp = new List<Rectangle>();
+
             Random rnd = new Random();
+            CurrentShape = new List<Rectangle>();
             CurrentShape = NextShape;
-            NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
+            NextShape = new List<Rectangle>();
+            //NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
+            //NextShape = Shapes[0];
+            
+            Rectangle B2 = new Rectangle((picturebox_T.Width / 2), -50, 50, 50);//Block 3 Unten Rechts
+            Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, -50, 50, 50);//Block 4 Mitte Links
+            Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, -100, 50, 50); //Block 5 Mitte
+            Rectangle B5 = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);   //Mitte der Rotation
+            Rectangle B6 = new Rectangle((picturebox_T.Width / 2) + 50, -100, 50, 50);
+            Rec_temp.Add(B2);
+            Rec_temp.Add(B4);
+            Rec_temp.Add(B5);
+            Rec_temp.Add(B6);
+            NextShape = Rec_temp;
+            
+
+
+
+            rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
         }
 
         private void TestForLines()
@@ -216,7 +239,6 @@ namespace _003_Tetris
                 if(rectCollider.IntersectsWith(rectTarget))
                 {
                     bCollision = true;
-                    break;
                 }
             }
             return bCollision;
@@ -237,6 +259,7 @@ namespace _003_Tetris
         {
             Rectangle temp = new Rectangle();
             bool bBottom = false;
+            bool bCollision = false;
 
             for(int i = 0; i < CurrentShape.Count; i++)
             {
@@ -248,10 +271,29 @@ namespace _003_Tetris
 
             foreach (Rectangle rect in CurrentShape)
             {
-                if (rect.Bottom >= 400)
+                if (!(rect.Bottom < picturebox_T.Height))
                 {
                     bBottom = true;
                 }
+            }
+            foreach(Rectangle rect in CurrentShape)
+            {
+                if(BlockCollisionDetect(rect))
+                {
+                    bCollision = true;
+                    bBottom = true;
+                }
+            }
+            
+            if(bCollision)
+            {
+                for (int i = 0; i < CurrentShape.Count; i++)
+                {
+                    temp = CurrentShape[i];
+                    temp.Y -= 50;
+                    CurrentShape[i] = temp;
+                }
+                rectRotationCenter.Y -= 50;
             }
 
             if(bBottom)
@@ -326,13 +368,7 @@ namespace _003_Tetris
             }
             else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
             {
-                for (int i = 0; i < CurrentShape.Count; i++)
-                {
-                    temp = CurrentShape[i];
-                    temp.Y += 50;
-                    CurrentShape[i] = temp;
-                }
-                rectRotationCenter.Y += 50;
+                TimerEventFalling(null,null);
                 timerFalling.Interval = 200;
             }
             else if(e.KeyCode == Keys.Up)
@@ -430,7 +466,6 @@ namespace _003_Tetris
                 Blocks.Add(rect);
             }
             GenerateNextShape();
-            rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
         }
     }
 }
