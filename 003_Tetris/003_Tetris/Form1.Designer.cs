@@ -30,6 +30,7 @@
         {
             this.picturebox_T = new System.Windows.Forms.PictureBox();
             this.picturebox_preview = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_T)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_preview)).BeginInit();
             this.SuspendLayout();
@@ -54,12 +55,22 @@
             this.picturebox_preview.TabStop = false;
             this.picturebox_preview.Paint += new System.Windows.Forms.PaintEventHandler(this.Preview_Paint);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(293, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // Tetris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(634, 961);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.picturebox_preview);
             this.Controls.Add(this.picturebox_T);
             this.KeyPreview = true;
@@ -74,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_T)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_preview)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -81,6 +93,7 @@
 
         private System.Windows.Forms.PictureBox picturebox_T;
         private System.Windows.Forms.PictureBox picturebox_preview;
+        private System.Windows.Forms.Label label1;
     }
 }
 

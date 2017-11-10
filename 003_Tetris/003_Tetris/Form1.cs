@@ -203,10 +203,10 @@ namespace _003_Tetris
 
         private void TestForLines()
         {
-            Rectangle RectCollision = new Rectangle();
-            RectCollision.Width = picturebox_T.Width;
-            RectCollision.X = 0;
-            RectCollision.Height = 50;
+            Rectangle RectCollisionHorizontal = new Rectangle();
+            RectCollisionHorizontal.Width = picturebox_T.Width;
+            RectCollisionHorizontal.X = 0;
+            RectCollisionHorizontal.Height = 50;
             bool bDelete = false;
             /*
             for(int i = picturebox_T.Height; i == 0; i -= 50)
@@ -228,16 +228,17 @@ namespace _003_Tetris
                 
             }
             */
+            /*
             for(int i = 0; i<(picturebox_T.Height / 50); i++)
             {
                 bDelete = true;
-                RectCollision.Y = i * 50;
+                RectCollisionHorizontal.Y = i * 50;
 
                 foreach(Rectangle block in Blocks)
                 {
                     if (block.Y == i * 50)
                     {
-                        if(!(RectCollision.IntersectsWith(block)))
+                        if(!(RectCollisionHorizontal.IntersectsWith(block)))
                         {
                             bDelete = false;
                         }
@@ -248,7 +249,45 @@ namespace _003_Tetris
                     DeleteLine(i*50);
                 }
             }
+            */
 
+            for (int i = 0; i < (picturebox_T.Height / 50); i++)
+            {
+                //bDelete = true;
+                RectCollisionHorizontal.Y = i * 50;
+                int iSum = 0;
+                foreach (Rectangle block in Blocks)
+                {
+                    if(block.Y == i * 50)
+                    {
+                        iSum += 50;
+                    }
+                }
+                if (iSum == 600)
+                {
+                    DeleteLine(i * 50);
+                }
+            }
+
+
+            /*
+            for(int i = picturebox_T.Height; i > 0; i-=50)
+            {
+                bDelete = true;
+                RectCollision.Y = i;
+                foreach(Rectangle block in Blocks)
+                {
+                    if(block.Bottom == i && !RectCollision.IntersectsWith(block))
+                    {
+                        bDelete = false;
+                    }
+                }
+                if(!bDelete)
+                {
+                    DeleteLine(i);
+                }
+            }
+            */
 
         }
 
@@ -276,13 +315,13 @@ namespace _003_Tetris
                     Blocks.RemoveAt(i);
                     i--;
                 }
-            }
+            }/*
             for (int i = 0; i < Blocks.Count; i++)
             {
                 temp = Blocks[i];
                 temp.Y += 50;
                 Blocks[i] = temp;
-            }
+            }*/
         }
 
         private void TimerEventFalling(object sender, EventArgs e)
@@ -318,7 +357,7 @@ namespace _003_Tetris
                 rectRotationCenter.Y -= 50;
                 BottomHit();
             }
-
+            label1.Text = Blocks.Count.ToString();
             picturebox_T.Invalidate();
         }
 
