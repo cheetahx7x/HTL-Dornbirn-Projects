@@ -230,16 +230,16 @@ namespace _003_Tetris
             */
             for(int i = 0; i<(picturebox_T.Height / 50); i++)
             {
-                bDelete = false;
-                for(int j = 0;j< (picturebox_T.Width / 50); j++)
-                {
-                    RectCollision.Y = i * 50;
+                bDelete = true;
+                RectCollision.Y = i * 50;
 
-                    foreach(Rectangle block in Blocks)
+                foreach(Rectangle block in Blocks)
+                {
+                    if (block.Y == i * 50)
                     {
-                        if (block.Y == i * 50 && !(RectCollision.IntersectsWith(block)))
+                        if(!(RectCollision.IntersectsWith(block)))
                         {
-                            bDelete = true;
+                            bDelete = false;
                         }
                     }
                 }
@@ -268,6 +268,7 @@ namespace _003_Tetris
 
         private void DeleteLine(int Y)
         {
+            Rectangle temp = new Rectangle();
             for(int i = 0; i < Blocks.Count; i++)
             {
                 if (Blocks[i].Y == Y)
@@ -275,6 +276,12 @@ namespace _003_Tetris
                     Blocks.RemoveAt(i);
                     i--;
                 }
+            }
+            for (int i = 0; i < Blocks.Count; i++)
+            {
+                temp = Blocks[i];
+                temp.Y += 50;
+                Blocks[i] = temp;
             }
         }
 
@@ -387,10 +394,10 @@ namespace _003_Tetris
             {
                 SpinShape();
             }
-            //if(e.KeyCode == Keys.K)
-            //{
-            //    DeleteLine(800);
-            //}
+            if (e.KeyCode == Keys.K)
+            {
+                DeleteLine(800);
+            }
 
             picturebox_T.Invalidate();
         }
