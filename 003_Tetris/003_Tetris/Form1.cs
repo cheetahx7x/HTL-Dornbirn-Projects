@@ -17,6 +17,10 @@ namespace _003_Tetris
             InitializeComponent();
         }
 
+        int iPoints = 0;
+
+        Random rnd = new Random();
+
         Timer timerFalling = new Timer();
 
         List<Rectangle> Blocks = new List<Rectangle>();
@@ -34,7 +38,7 @@ namespace _003_Tetris
             GenerateNextShape();
             GenerateNextShape();
             timerFalling.Tick += new EventHandler(this.TimerEventFalling);
-            timerFalling.Interval = 500;
+            timerFalling.Interval = 250;
             timerFalling.Start();
         }
 
@@ -166,10 +170,12 @@ namespace _003_Tetris
 
         private void Preview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            foreach(Rectangle Rect in NextShape)
+            e.Graphics.ScaleTransform(0.4f, 0.4f);
+            e.Graphics.TranslateTransform(-200, 200);
+            foreach(Rectangle rect in NextShape)
             {
-                e.Graphics.DrawRectangle(Pens.Transparent, Rect);
-                e.Graphics.FillRectangle(Brushes.Black, Rect);
+                e.Graphics.DrawRectangle(Pens.Transparent, rect);
+                e.Graphics.FillRectangle(Brushes.Black, rect);
             }
         }
 
@@ -178,22 +184,34 @@ namespace _003_Tetris
             List<Rectangle> Rec_temp = new List<Rectangle>();
             Tetris_Shapes();
 
-            Random rnd = new Random();
             CurrentShape = new List<Rectangle>();
             CurrentShape = NextShape;
             NextShape = new List<Rectangle>();
             NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
+            picturebox_preview.Invalidate();
 
             rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
         }
 
         private void TestForLines()
         {
+            int count = 0;
             for(int i = 0; i < picturebox_T.Height; i+=50)
             {
-                if ((from rect in Blocks where rect.Y == i select rect).Count() == 12) DeleteLine(i);
+                if ((from rect in Blocks where rect.Y == i select rect).Count() == (picturebox_T.Width / 50))
+                {
+                    DeleteLine(i);
+                    count++;
+                }
             }
-
+            switch(count)
+            {
+                case 1: iPoints += 40; break;
+                case 2: iPoints += 100; break;
+                case 3: iPoints += 300; break;
+                case 4: iPoints += 1200; break;
+            }
+            lbl_points.Text = "Punkte: " + iPoints.ToString();
         }
 
         private bool BlockCollisionDetect(Rectangle rectCollider)
@@ -259,7 +277,6 @@ namespace _003_Tetris
                 rectRotationCenter.Y -= 50;
                 BottomHit();
             }
-            label1.Text = Blocks.Count.ToString();
             picturebox_T.Invalidate();
         }
 
@@ -326,10 +343,10 @@ namespace _003_Tetris
                 }
 
             }
-            else if(e.KeyCode == Keys.Down && timerFalling.Interval != 200)
+            else if(e.KeyCode == Keys.Down && timerFalling.Interval != 150)
             {
                 TimerEventFalling(null,null);
-                timerFalling.Interval = 200;
+                timerFalling.Interval = 150;
             }
             else if(e.KeyCode == Keys.Up)
             {
@@ -347,7 +364,7 @@ namespace _003_Tetris
         {
             if (e.KeyCode == Keys.Down)
             {
-                timerFalling.Interval = 1000;
+                timerFalling.Interval = 250;
             }
         }
 
@@ -460,6 +477,7 @@ namespace _003_Tetris
             }
             TestForLines();
             GenerateNextShape();
+            if ((from rect in Blocks where rect.Y < 0 select rect).Count() > 0) this.Close();
         }
 
         private bool CurrentShapeCollisionDetect()
