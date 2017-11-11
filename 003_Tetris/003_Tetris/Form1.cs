@@ -42,7 +42,7 @@ namespace _003_Tetris
         private void Tetris_Shapes()
         {
             List<Rectangle> Rec_temp = new List<Rectangle>();
-
+            Shapes = new List<List<Rectangle>>();
 
             picturebox_T.Select();
             //3*3 Box aus Blöcken + 2 Blöcke oben in der Mitte(Mitte kommt nach dem ersten linken Block weil zweiermitte)
@@ -203,11 +203,16 @@ namespace _003_Tetris
 
         private void TestForLines()
         {
-            Rectangle RectCollisionHorizontal = new Rectangle();
-            RectCollisionHorizontal.Width = picturebox_T.Width;
-            RectCollisionHorizontal.X = 0;
-            RectCollisionHorizontal.Height = 50;
-            bool bDelete = false;
+            //Rectangle RectCollisionHorizontal = new Rectangle();
+            //RectCollisionHorizontal.Width = picturebox_T.Width;
+            //RectCollisionHorizontal.X = 0;
+            //RectCollisionHorizontal.Height = 50;
+
+            Rectangle RectCollisionVertical = new Rectangle();
+            RectCollisionVertical.Width = 50;
+            RectCollisionVertical.Y = 0;
+            RectCollisionVertical.Height = picturebox_T.Height;
+            //bool bDelete = false;
             /*
             for(int i = picturebox_T.Height; i == 0; i -= 50)
             {
@@ -250,7 +255,7 @@ namespace _003_Tetris
                 }
             }
             */
-
+            /*
             for (int i = 0; i < (picturebox_T.Height / 50); i++)
             {
                 //bDelete = true;
@@ -268,7 +273,7 @@ namespace _003_Tetris
                     DeleteLine(i * 50);
                 }
             }
-
+            */
 
             /*
             for(int i = picturebox_T.Height; i > 0; i-=50)
@@ -289,6 +294,12 @@ namespace _003_Tetris
             }
             */
 
+            for(int i = 0; i < picturebox_T.Height; i+=50)
+            {
+                int number = (from rect in Blocks where rect.Y == i select rect).Count();
+                if (number == 12) DeleteLine(i);
+            }
+
         }
 
         private bool BlockCollisionDetect(Rectangle rectCollider)
@@ -308,14 +319,8 @@ namespace _003_Tetris
         private void DeleteLine(int Y)
         {
             Rectangle temp = new Rectangle();
-            for(int i = 0; i < Blocks.Count; i++)
-            {
-                if (Blocks[i].Y == Y)
-                {
-                    Blocks.RemoveAt(i);
-                    i--;
-                }
-            }
+            Blocks = new List<Rectangle>(from rect in Blocks where rect.Y != Y select rect);
+
             for (int i = 0; i < Blocks.Count; i++)
             {
                 if (Blocks[i].Y < Y)
