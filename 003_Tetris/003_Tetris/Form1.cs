@@ -183,121 +183,15 @@ namespace _003_Tetris
             CurrentShape = NextShape;
             NextShape = new List<Rectangle>();
             NextShape = Shapes[rnd.Next(0, (Shapes.Count - 1))];
-            //NextShape = Shapes[0];
-            /*
-            Rectangle B2 = new Rectangle((picturebox_T.Width / 2), -50, 50, 50);//Block 3 Unten Rechts
-            Rectangle B3 = new Rectangle((picturebox_T.Width / 2) + 50, -50, 50, 50);//Block 4 Mitte Links
-            Rectangle B4 = new Rectangle((picturebox_T.Width / 2) - 50, -100, 50, 50); //Block 5 Mitte
-            Rectangle B5 = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);   //Mitte der Rotation
-            Rectangle B6 = new Rectangle((picturebox_T.Width / 2) + 50, -100, 50, 50);
-            Rec_temp.Add(B2);
-            Rec_temp.Add(B4);
-            Rec_temp.Add(B5);
-            Rec_temp.Add(B6);
-            NextShape = Rec_temp;
-            */
-
 
             rectRotationCenter = new Rectangle((picturebox_T.Width / 2), -100, 50, 50);
         }
 
         private void TestForLines()
         {
-            //Rectangle RectCollisionHorizontal = new Rectangle();
-            //RectCollisionHorizontal.Width = picturebox_T.Width;
-            //RectCollisionHorizontal.X = 0;
-            //RectCollisionHorizontal.Height = 50;
-
-            Rectangle RectCollisionVertical = new Rectangle();
-            RectCollisionVertical.Width = 50;
-            RectCollisionVertical.Y = 0;
-            RectCollisionVertical.Height = picturebox_T.Height;
-            //bool bDelete = false;
-            /*
-            for(int i = picturebox_T.Height; i == 0; i -= 50)
-            {
-                bDelete = true;
-                for(int j = picturebox_T.Width; j == 0; i -= 50)
-                {
-                    RectCollision.Y = i;
-
-                    if (!(BlockCollisionDetect(RectCollision)))
-                    {
-                        bDelete = false;
-                    }
-                }
-                if(bDelete != false)
-                {
-                    DeleteLine(i);
-                }
-                
-            }
-            */
-            /*
-            for(int i = 0; i<(picturebox_T.Height / 50); i++)
-            {
-                bDelete = true;
-                RectCollisionHorizontal.Y = i * 50;
-
-                foreach(Rectangle block in Blocks)
-                {
-                    if (block.Y == i * 50)
-                    {
-                        if(!(RectCollisionHorizontal.IntersectsWith(block)))
-                        {
-                            bDelete = false;
-                        }
-                    }
-                }
-                if(bDelete)
-                {
-                    DeleteLine(i*50);
-                }
-            }
-            */
-            /*
-            for (int i = 0; i < (picturebox_T.Height / 50); i++)
-            {
-                //bDelete = true;
-                RectCollisionHorizontal.Y = i * 50;
-                int iSum = 0;
-                foreach (Rectangle block in Blocks)
-                {
-                    if(block.Y == i * 50)
-                    {
-                        iSum += 50;
-                    }
-                }
-                if (iSum >= 600)
-                {
-                    DeleteLine(i * 50);
-                }
-            }
-            */
-
-            /*
-            for(int i = picturebox_T.Height; i > 0; i-=50)
-            {
-                bDelete = true;
-                RectCollision.Y = i;
-                foreach(Rectangle block in Blocks)
-                {
-                    if(block.Bottom == i && !RectCollision.IntersectsWith(block))
-                    {
-                        bDelete = false;
-                    }
-                }
-                if(!bDelete)
-                {
-                    DeleteLine(i);
-                }
-            }
-            */
-
             for(int i = 0; i < picturebox_T.Height; i+=50)
             {
-                int number = (from rect in Blocks where rect.Y == i select rect).Count();
-                if (number == 12) DeleteLine(i);
+                if ((from rect in Blocks where rect.Y == i select rect).Count() == 12) DeleteLine(i);
             }
 
         }
