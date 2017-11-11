@@ -263,7 +263,7 @@ namespace _003_Tetris
                         iSum += 50;
                     }
                 }
-                if (iSum == 600)
+                if (iSum >= 600)
                 {
                     DeleteLine(i * 50);
                 }
@@ -315,13 +315,16 @@ namespace _003_Tetris
                     Blocks.RemoveAt(i);
                     i--;
                 }
-            }/*
+            }
             for (int i = 0; i < Blocks.Count; i++)
             {
-                temp = Blocks[i];
-                temp.Y += 50;
-                Blocks[i] = temp;
-            }*/
+                if (Blocks[i].Y < Y)
+                {
+                    temp = Blocks[i];
+                    temp.Y += 50;
+                    Blocks[i] = temp;
+                }
+            }
         }
 
         private void TimerEventFalling(object sender, EventArgs e)
@@ -518,16 +521,36 @@ namespace _003_Tetris
                 }
             }
 
-            //if (CurrentShapeCollisionDetect())
-            //{
-            //    for (int i = 0; i < CurrentShape.Count; i++)
-            //    {
-            //        temp = CurrentShape[i];
-            //        temp.Y = rectRotationCenter.Y - (CurrentShape[i].X - rectRotationCenter.X);
-            //        temp.X = rectRotationCenter.X + (CurrentShape[i].Y - rectRotationCenter.Y);
-            //        CurrentShape[i] = temp;
-            //    }
-            //}
+            if (CurrentShapeCollisionDetect())
+            {
+                for (int i = 0; i < CurrentShape.Count; i++)
+                {
+                    temp = CurrentShape[i];
+                    temp.Y = rectRotationCenter.Y + (CurrentShape[i].X - rectRotationCenter.X);
+                    temp.X = rectRotationCenter.X - (CurrentShape[i].Y - rectRotationCenter.Y);
+                    CurrentShape[i] = temp;
+                }
+                if(CurrentShapeCollisionDetect())
+                {
+                    for (int i = 0; i < CurrentShape.Count; i++)
+                    {
+                        temp = CurrentShape[i];
+                        temp.Y = rectRotationCenter.Y + (CurrentShape[i].X - rectRotationCenter.X);
+                        temp.X = rectRotationCenter.X - (CurrentShape[i].Y - rectRotationCenter.Y);
+                        CurrentShape[i] = temp;
+                    }
+                    if (CurrentShapeCollisionDetect())
+                    {
+                        for (int i = 0; i < CurrentShape.Count; i++)
+                        {
+                            temp = CurrentShape[i];
+                            temp.Y = rectRotationCenter.Y + (CurrentShape[i].X - rectRotationCenter.X);
+                            temp.X = rectRotationCenter.X - (CurrentShape[i].Y - rectRotationCenter.Y);
+                            CurrentShape[i] = temp;
+                        }
+                    }
+                }
+            }
         }
 
         private void BottomHit()
