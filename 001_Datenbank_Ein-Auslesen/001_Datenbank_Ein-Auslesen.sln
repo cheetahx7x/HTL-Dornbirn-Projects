@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "001_Datenbank_Ein-Auslesen", "001_Datenbank_Ein-Auslesen\001_Datenbank_Ein-Auslesen.sqlproj", "{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A1A85B6-14DD-4C54-BF29-64B27996BF1D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {150892EF-4436-4760-8660-30DD3BE2F9B2}
+	EndGlobalSection
+EndGlobal
