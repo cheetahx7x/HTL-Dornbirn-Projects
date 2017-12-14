@@ -37,7 +37,8 @@ namespace _001_Ein_Auslesen_SQL_Database
                     SqlDataReader sqlReader = sqlCmd.ExecuteReader();
                     while (sqlReader.Read())
                     {
-                        MessageBox.Show(sqlReader.GetValue(0) + " - " + sqlReader.GetValue(1) + " - " + sqlReader.GetValue(2));
+                        dgv_Personal.Rows.Add(sqlReader.GetValue(0), sqlReader.GetValue(1), sqlReader.GetValue(2));
+                        //MessageBox.Show(sqlReader.GetValue(0) + " - " + sqlReader.GetValue(1) + " - " + sqlReader.GetValue(2));
                     }
                     sqlReader.Close();
                     sqlCmd.Dispose();
