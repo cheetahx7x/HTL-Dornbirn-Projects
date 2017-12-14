@@ -9,7 +9,9 @@ public partial class UserDefinedFunctions
     [Microsoft.SqlServer.Server.SqlFunction]
     public static SqlString SqlFunction1()
     {
-        // Put your code here
+
+        connetionString = "Data Source=ServerName;
+        Initial Catalog = DatabaseName; User ID = UserName; Password = Password"
         return new SqlString (string.Empty);
     }
 }
