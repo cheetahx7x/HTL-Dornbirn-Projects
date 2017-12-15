@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.btn_execute = new System.Windows.Forms.Button();
-            this.dgv_Personal = new System.Windows.Forms.DataGridView();
-            this.clm_persnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clm_vn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clm_zn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Personal)).BeginInit();
+            this.txt_sql = new System.Windows.Forms.TextBox();
+            this.dgv_tables = new System.Windows.Forms.DataGridView();
+            this.clm_tables = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmb_DB = new System.Windows.Forms.ComboBox();
+            this.btn_tables = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tables)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_execute
             // 
-            this.btn_execute.Location = new System.Drawing.Point(12, 411);
+            this.btn_execute.Location = new System.Drawing.Point(12, 38);
             this.btn_execute.Name = "btn_execute";
             this.btn_execute.Size = new System.Drawing.Size(132, 38);
             this.btn_execute.TabIndex = 0;
@@ -46,60 +47,79 @@
             this.btn_execute.UseVisualStyleBackColor = true;
             this.btn_execute.Click += new System.EventHandler(this.btn_execute_Click);
             // 
-            // dgv_Personal
+            // txt_sql
             // 
-            this.dgv_Personal.AllowUserToAddRows = false;
-            this.dgv_Personal.AllowUserToDeleteRows = false;
-            this.dgv_Personal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Personal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clm_persnr,
-            this.clm_vn,
-            this.clm_zn});
-            this.dgv_Personal.Location = new System.Drawing.Point(629, 12);
-            this.dgv_Personal.Name = "dgv_Personal";
-            this.dgv_Personal.ReadOnly = true;
-            this.dgv_Personal.Size = new System.Drawing.Size(343, 437);
-            this.dgv_Personal.TabIndex = 1;
+            this.txt_sql.AllowDrop = true;
+            this.txt_sql.Location = new System.Drawing.Point(12, 12);
+            this.txt_sql.Name = "txt_sql";
+            this.txt_sql.Size = new System.Drawing.Size(285, 20);
+            this.txt_sql.TabIndex = 1;
             // 
-            // clm_persnr
+            // dgv_tables
             // 
-            this.clm_persnr.HeaderText = "PersonalNr.";
-            this.clm_persnr.Name = "clm_persnr";
-            this.clm_persnr.ReadOnly = true;
+            this.dgv_tables.AllowUserToAddRows = false;
+            this.dgv_tables.AllowUserToDeleteRows = false;
+            this.dgv_tables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_tables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clm_tables});
+            this.dgv_tables.Location = new System.Drawing.Point(303, 12);
+            this.dgv_tables.Name = "dgv_tables";
+            this.dgv_tables.ReadOnly = true;
+            this.dgv_tables.Size = new System.Drawing.Size(144, 437);
+            this.dgv_tables.TabIndex = 2;
             // 
-            // clm_vn
+            // clm_tables
             // 
-            this.clm_vn.HeaderText = "Vorname";
-            this.clm_vn.Name = "clm_vn";
-            this.clm_vn.ReadOnly = true;
+            this.clm_tables.HeaderText = "Tabellen";
+            this.clm_tables.Name = "clm_tables";
+            this.clm_tables.ReadOnly = true;
             // 
-            // clm_zn
+            // cmb_DB
             // 
-            this.clm_zn.HeaderText = "Zuname";
-            this.clm_zn.Name = "clm_zn";
-            this.clm_zn.ReadOnly = true;
+            this.cmb_DB.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmb_DB.Location = new System.Drawing.Point(150, 38);
+            this.cmb_DB.Name = "cmb_DB";
+            this.cmb_DB.Size = new System.Drawing.Size(147, 21);
+            this.cmb_DB.Sorted = true;
+            this.cmb_DB.TabIndex = 3;
+            // 
+            // btn_tables
+            // 
+            this.btn_tables.Location = new System.Drawing.Point(150, 65);
+            this.btn_tables.Name = "btn_tables";
+            this.btn_tables.Size = new System.Drawing.Size(147, 40);
+            this.btn_tables.TabIndex = 4;
+            this.btn_tables.Text = "Load Tables";
+            this.btn_tables.UseVisualStyleBackColor = true;
+            this.btn_tables.Click += new System.EventHandler(this.btn_tables_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 461);
-            this.Controls.Add(this.dgv_Personal);
+            this.Controls.Add(this.btn_tables);
+            this.Controls.Add(this.cmb_DB);
+            this.Controls.Add(this.dgv_tables);
+            this.Controls.Add(this.txt_sql);
             this.Controls.Add(this.btn_execute);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Personal)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tables)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btn_execute;
-        private System.Windows.Forms.DataGridView dgv_Personal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clm_persnr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clm_vn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clm_zn;
+        private System.Windows.Forms.TextBox txt_sql;
+        private System.Windows.Forms.DataGridView dgv_tables;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clm_tables;
+        private System.Windows.Forms.ComboBox cmb_DB;
+        private System.Windows.Forms.Button btn_tables;
     }
 }
 
