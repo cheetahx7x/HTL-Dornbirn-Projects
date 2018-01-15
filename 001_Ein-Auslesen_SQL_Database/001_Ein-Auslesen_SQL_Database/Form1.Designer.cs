@@ -82,6 +82,7 @@
             this.cmb_DB.Size = new System.Drawing.Size(147, 21);
             this.cmb_DB.Sorted = true;
             this.cmb_DB.TabIndex = 3;
+            this.cmb_DB.SelectedIndexChanged += new System.EventHandler(this.cmb_DB_SelectedIndexChanged);
             // 
             // btn_tables
             // 

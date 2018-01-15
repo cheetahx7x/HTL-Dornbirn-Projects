@@ -41,7 +41,7 @@ namespace _001_Ein_Auslesen_SQL_Database
             {
                 if (cmb_DB.Text != "" && txt_sql.Text != "")
                 {
-                    StreamWriter streamWriter = new StreamWriter("SQLDaten.csv", true);
+                    StreamWriter streamWriter = new StreamWriter("SQLDaten.csv", true, System.Text.Encoding.Unicode);
                     sql = txt_sql.Text;
                     try
                     {
@@ -176,6 +176,11 @@ namespace _001_Ein_Auslesen_SQL_Database
         }
 
         private void btn_tables_Click(object sender, EventArgs e)
+        {
+            tables();
+        }
+
+        private void cmb_DB_SelectedIndexChanged(object sender, EventArgs e)
         {
             tables();
         }
