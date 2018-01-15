@@ -58,7 +58,7 @@ namespace _004_Throw
 
         bool bSpace;
 
-        int iRefreshRate = 5;
+        int iRefreshRate = 2;
         //int iParabolaLength = 70;
 
         float fGravity = 3f;
@@ -90,6 +90,8 @@ namespace _004_Throw
             Generate_PlayArea();
             Generate_Solid();
             Generate_Tanks();
+
+            pic.Paint += new PaintEventHandler(this.pic_Paint);
 
             //pic.MouseClick += new MouseEventHandler(this.Umgebung_MouseClick);
 
@@ -229,22 +231,8 @@ namespace _004_Throw
             Solid[8] = point;
         }
 
-        private void Umgebung_Paint(object sender, PaintEventArgs e)
+        void pic_Paint(object sender, PaintEventArgs e)
         {
-            /*
-            GraphicsPath g = new GraphicsPath();
-            g.AddPolygon(Play_Area.ToArray());
-
-            PathGradientBrush My_Brush = new PathGradientBrush(g);
-
-            My_Brush.CenterPoint = new PointF(0, 0);
-            My_Brush.CenterColor = Color.DeepSkyBlue;
-            Color[] colors = { Color.LightGoldenrodYellow };
-            My_Brush.SurroundColors = colors;
-
-            e.Graphics.FillPolygon(My_Brush, Play_Area.ToArray());
-            */
-
             GraphicsPath g = new GraphicsPath();
             g.AddRectangle(this.ClientRectangle);
 
@@ -283,7 +271,7 @@ namespace _004_Throw
             {
                 e.Graphics.FillCircle(Brushes.Black, Circle1);
 
-                for (int i = 0; i < 360; i+=45)
+                for (int i = 0; i < 360; i += 30)
                 {
                     point.X = (float)(Circle1[2] * Math.Cos(i * Math.PI / 180F)) + Circle1[0];
                     point.Y = (float)(Circle1[2] * Math.Sin(i * Math.PI / 180F)) + Circle1[1];
@@ -296,6 +284,23 @@ namespace _004_Throw
             //point.Y = Circle1[1];
             //e.Graphics.DrawLine(Pens.Black, pointMouse, point);
             C1Points.Clear();
+        }
+
+        private void Umgebung_Paint(object sender, PaintEventArgs e)
+        {
+            /*
+            GraphicsPath g = new GraphicsPath();
+            g.AddPolygon(Play_Area.ToArray());
+
+            PathGradientBrush My_Brush = new PathGradientBrush(g);
+
+            My_Brush.CenterPoint = new PointF(0, 0);
+            My_Brush.CenterColor = Color.DeepSkyBlue;
+            Color[] colors = { Color.LightGoldenrodYellow };
+            My_Brush.SurroundColors = colors;
+
+            e.Graphics.FillPolygon(My_Brush, Play_Area.ToArray());
+            */
         }
 
         private void Umgebung_MouseClick(object sender, MouseEventArgs e)
@@ -353,8 +358,13 @@ namespace _004_Throw
         private bool Intersect_Circle()
         {
             bool bIntersect =false;
-            for (int i = 0; i < C1Points.Count; i++) { if (Solid_Region.IsVisible(C1Points[i])) { bIntersect = true; } ; }
-            for (int i = 0; i < C1Points.Count; i++) { if (Solid_Region.IsVisible(C1Points[i])) { bIntersect = true; }; }
+            for (int i = 0; i < C1Points.Count; i++)
+            {
+                if (Solid_Region.IsVisible(C1Points[i]))
+                {
+                    bIntersect = true;
+                }
+            }
             return bIntersect;
         }
 
@@ -450,24 +460,22 @@ namespace _004_Throw
             fyspeed = fyspeed + ((fGravity / 2) * (iTimeSteps));
             // Bewegung in Y-Richtung nach Geschwindigkeit
             Circle1[1] = Circle1[1] + (fyspeed * (iTimeSteps * 0.005f));
+            // Bewegung in X-Richtung nach Geschwindigkeit
+            Circle1[0] = Circle1[0] + (fxspeed * (iTimeSteps * 0.005f));
 
-            // Kollisionstest nach Y-Bewegung
+            // Kollisionstest Solid Region
             if (Intersect_Circle() == true)
             {
                 // Bewegung Rückgängig machen
                 Circle1[1] = Circle1[1] - (fyspeed * (iTimeSteps * 0.005f));
-                // Abprallen
-                fyspeed = -fyspeed * 0.2f;
-                // Reibung
-                if (fxspeed < -1 || fxspeed > 1) fxspeed = fxspeed * 0.8f;
-                else fxspeed = 0;
+                Circle1[0] = Circle1[0] - (fxspeed * (iTimeSteps * 0.005f));
+                //Bewegung stoppen
+                fyspeed = 0;
+                fxspeed = 0;
             }
 
-            // Bewegung in X-Richtung nach Geschwindigkeit
-            Circle1[0] = Circle1[0] + (fxspeed * (iTimeSteps * 0.005f));
-
-            // Kollisionstest nach X-Bewegung
-            if (Intersect_Circle() == true || Intersect_Circle_Bounds() == true)
+            // Kollisionstest Bounds
+            if (Intersect_Circle_Bounds() == true)
             {
                 // Bewegung Rückgängig machen
                 Circle1[0] = Circle1[0] - (fxspeed * (iTimeSteps * 0.005f));
@@ -475,16 +483,11 @@ namespace _004_Throw
                 fxspeed = -fxspeed * 0.3f;
             }
 
-            // Kollisionstest des Ziels bei Bewegung der Banane
-            if (fxspeed != 0 && fyspeed != 0)
+            // Kollisionstest des Ziels
+            if (Circle1_Region.IsVisible(Tank2))
             {
-                if (Circle1_Region.IsVisible(Tank2))
-                {
-                    timerGravity.Stop();
-                }
+                timerGravity.Stop();
             }
-
-            //if (list_PointsMoving.Count > 0) list_PointsMoving.RemoveAt(0);
 
         }
 
