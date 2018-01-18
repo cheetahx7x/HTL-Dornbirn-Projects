@@ -126,7 +126,7 @@ namespace _001_Ein_Auslesen_SQL_Database
 
         private void connect(string database)
         {
-            connetionString = "Data Source=JOHANNESLAPTOP;Initial Catalog="+database+";User ID=c#;Password=abcdefg";
+            connetionString = "Data Source=" + Program.servername + ";Initial Catalog="+database+";User ID=" + Program.login + ";Password=" + Program.password;
             cnn = new SqlConnection(connetionString);
             cnn.Open();
         }
