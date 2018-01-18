@@ -8,6 +8,10 @@ namespace _001_Ein_Auslesen_SQL_Database
 {
     static class Program
     {
+        public static string servername = "";
+        public static string login = "";
+        public static string password = "";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +20,11 @@ namespace _001_Ein_Auslesen_SQL_Database
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new login());
+            if (servername != "")
+            {
+                Application.Run(new MainForm());
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace _001_Ein_Auslesen_SQL_Database
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,6 @@
             this.dgv_tables = new System.Windows.Forms.DataGridView();
             this.clm_tables = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_DB = new System.Windows.Forms.ComboBox();
-            this.btn_tables = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tables)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,32 +80,21 @@
             this.cmb_DB.Name = "cmb_DB";
             this.cmb_DB.Size = new System.Drawing.Size(147, 21);
             this.cmb_DB.Sorted = true;
-            this.cmb_DB.TabIndex = 3;
+            this.cmb_DB.TabIndex = 2;
             this.cmb_DB.SelectedIndexChanged += new System.EventHandler(this.cmb_DB_SelectedIndexChanged);
             // 
-            // btn_tables
-            // 
-            this.btn_tables.Location = new System.Drawing.Point(150, 65);
-            this.btn_tables.Name = "btn_tables";
-            this.btn_tables.Size = new System.Drawing.Size(147, 40);
-            this.btn_tables.TabIndex = 4;
-            this.btn_tables.Text = "Load Tables";
-            this.btn_tables.UseVisualStyleBackColor = true;
-            this.btn_tables.Click += new System.EventHandler(this.btn_tables_Click);
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 461);
-            this.Controls.Add(this.btn_tables);
             this.Controls.Add(this.cmb_DB);
             this.Controls.Add(this.dgv_tables);
             this.Controls.Add(this.txt_sql);
             this.Controls.Add(this.btn_execute);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "MainForm";
+            this.Text = "SQL Connect";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tables)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -120,7 +108,6 @@
         private System.Windows.Forms.DataGridView dgv_tables;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_tables;
         private System.Windows.Forms.ComboBox cmb_DB;
-        private System.Windows.Forms.Button btn_tables;
     }
 }
 

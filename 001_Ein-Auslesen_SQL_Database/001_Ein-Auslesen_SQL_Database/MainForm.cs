@@ -12,9 +12,9 @@ using System.IO;
 
 namespace _001_Ein_Auslesen_SQL_Database
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -86,11 +86,6 @@ namespace _001_Ein_Auslesen_SQL_Database
                 MessageBox.Show("Sie haben noch keine Datenbank ausgewählt!", "FEHLER!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            load_dbs();
         }
 
         private void load_dbs()
@@ -175,14 +170,14 @@ namespace _001_Ein_Auslesen_SQL_Database
             }
         }
 
-        private void btn_tables_Click(object sender, EventArgs e)
+        private void cmb_DB_SelectedIndexChanged(object sender, EventArgs e)
         {
             tables();
         }
 
-        private void cmb_DB_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            tables();
+            load_dbs();
         }
     }
 }
