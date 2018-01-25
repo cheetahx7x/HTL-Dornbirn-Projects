@@ -34,6 +34,9 @@ namespace _001_Ein_Auslesen_SQL_Database
         SqlConnection cnn;
         SqlCommand sqlCmd;
         string sql = null;
+        int columns;
+        bool file = false;
+        string curFile = @"C:\Users\jonyf\source\repos\HTL-Dornbirn-Projects\001_Ein-Auslesen_SQL_Database\001_Ein-Auslesen_SQL_Database\bin\Debug\SQLDaten.csv";
 
         private void btn_execute_Click(object sender, EventArgs e)
         {
@@ -41,6 +44,10 @@ namespace _001_Ein_Auslesen_SQL_Database
             {
                 if (cmb_DB.Text != "" && txt_sql.Text != "")
                 {
+                    if (File.Exists(curFile))
+                    {
+                        file = true;
+                    }
                     StreamWriter streamWriter = new StreamWriter("SQLDaten.csv", true, System.Text.Encoding.Unicode);
                     sql = txt_sql.Text;
                     try
@@ -48,15 +55,39 @@ namespace _001_Ein_Auslesen_SQL_Database
                         connect(cmb_DB.Text);
                         try
                         {
+                            columns = 0;
                             sqlCmd = new SqlCommand(sql, cnn);
+                            if(file == false)
+                            {
+                                streamWriter.Write("sep=~");
+                                streamWriter.Write(Environment.NewLine);
+                            }
+                            streamWriter.Write(sql);
+                            streamWriter.Write('\n');
+                            streamWriter.Write('\n');
+                            using (SqlCommand command = sqlCmd)
+                            {
+                                SqlDataReader reader = command.ExecuteReader();
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    streamWriter.Write(reader.GetName(i));
+                                    streamWriter.Write('~');
+                                }
+                                streamWriter.Write('\n');
+                                reader.Close();
+                            }
                             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
                             while (sqlReader.Read())
                             {
-                                streamWriter.Write(sqlReader.GetValue(0));
-                                streamWriter.Write(',');
-                                streamWriter.Write(sqlReader.GetValue(1));
-                                streamWriter.Write(',');
-                                streamWriter.Write(sqlReader.GetValue(2));
+                                for(int i = 0; i<sqlReader.FieldCount;i++)
+                                {
+                                    if(i != 0)
+                                    {
+                                        streamWriter.Write('~');
+                                    }
+                                    streamWriter.Write(sqlReader.GetValue(i));
+                                }
                                 streamWriter.Write('\n');
                             }
                             sqlReader.Close();
