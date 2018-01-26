@@ -62,9 +62,6 @@ namespace _001_Ein_Auslesen_SQL_Database
                                 streamWriter.Write("sep=~");
                                 streamWriter.Write(Environment.NewLine);
                             }
-                            streamWriter.Write(sql);
-                            streamWriter.Write('\n');
-                            streamWriter.Write('\n');
                             using (SqlCommand command = sqlCmd)
                             {
                                 SqlDataReader reader = command.ExecuteReader();
@@ -78,6 +75,9 @@ namespace _001_Ein_Auslesen_SQL_Database
                                 reader.Close();
                             }
                             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+                            streamWriter.Write(sql);
+                            streamWriter.Write('\n');
+                            streamWriter.Write('\n');
                             while (sqlReader.Read())
                             {
                                 for(int i = 0; i<sqlReader.FieldCount;i++)
