@@ -73,12 +73,12 @@ void Snake::lineOn()
 void Snake::wallOff()
 {
 	noWall = true ;
-	terrain->setColor(Color::Color(50,50,50)) ;
+	//terrain->setColor(Color::Color(50,50,50)) ;
 }
 void Snake::wallOn()
 {
 	noWall = false ;
-	terrain->setColor(Color::White) ;
+	//terrain->setColor(Color::White) ;
 }
 void Snake::eraseLine()
 {
