@@ -32,7 +32,11 @@ int main()
 		{
 			for(int i(0) ; i < Keyboard::KeyCount ; i++)
 			{
-				if(Keyboard::isKeyPressed(Keyboard::Key(i)) && Keyboard::Key(i) != keyBinding[k-1] && Keyboard::Key(i) != Keyboard::Return) keyBinding[k]=Keyboard::Key(i) ;
+				if (k == 0)
+				{
+					if (Keyboard::isKeyPressed(Keyboard::Key(i)) && Keyboard::Key(i) != keyBinding[k] && Keyboard::Key(i) != Keyboard::Return) keyBinding[k] = Keyboard::Key(i);
+				}
+				else if (Keyboard::isKeyPressed(Keyboard::Key(i)) && Keyboard::Key(i) != keyBinding[k-1] && Keyboard::Key(i) != Keyboard::Return) keyBinding[k] = Keyboard::Key(i);
 			}
 		}
 	}
