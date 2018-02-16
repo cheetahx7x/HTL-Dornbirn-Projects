@@ -43,7 +43,7 @@ int main()
 	Keyboard::Key restartKey = keyBinding[keyBinding.size()-1] ;
 	
 	ContextSettings antiAliasing ; antiAliasing.antialiasingLevel = 32 ;
-	RenderWindow window(VideoMode(width,height, 32), "CurveFever",Style::Default,antiAliasing);
+	RenderWindow window(VideoMode(width,height, 32), "CatFever",Style::Default,antiAliasing);
 
 	Texture BackgroundTexture;
 	Sprite Background;
@@ -60,13 +60,18 @@ int main()
 
 	window.setFramerateLimit(60) ;
 
-	Color testcolor(245, 156, 52);
+	Color color1(245, 156, 52);
+	Color color2(153, 153, 153);
+	Color color3(26, 26, 26);
+	Color color4(194, 58, 248);
 
 	vector<Color> c;
-	 c.push_back(testcolor) ;
-	  c.push_back(Color::Blue) ;
-	   c.push_back(Color::White) ;
-	    c.push_back(Color::Green) ;
+	c.push_back(color1);
+	c.push_back(color2);
+	c.push_back(color3);
+	c.push_back(color4);
+
+	int count;
 
 	while(true) //loop to restart game
 	{
@@ -79,7 +84,7 @@ int main()
 		for(int i(0) ; i < playerNb ; i++)
 		{
 			player.push_back(Snake(randVector2f(terrain.getSize())/2.f+terrain.getSize()/4.f,
-					randVector2f(1)-Vector2f(0.5,0.5), c[i],	&terrain ,keyBinding[2*i],keyBinding[2*i+1])) ;
+					randVector2f(1)-Vector2f(0.5,0.5), c[i],	&terrain ,keyBinding[2*i],keyBinding[2*i+1],i)) ;
 		}
 	
 		for(int i(0) ; i < playerNb ; i++) //assigning enemies
@@ -111,6 +116,13 @@ int main()
 			window.display() ;
 
 			if(Keyboard::isKeyPressed(restartKey)) break ; //restart game
+
+			count = 0;
+			for (int i = 0; i < playerNb; i++)
+			{
+				if (player[i].alive) count++;
+			}
+			if (count <= 1) break;
 
 			dt= deltaTime.restart().asSeconds() ; //get time since the last frame
 		}

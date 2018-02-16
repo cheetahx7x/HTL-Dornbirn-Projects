@@ -13,7 +13,7 @@ using namespace sf ;
 class Snake
 {
 public:
-	Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _color, Terrain *_terrain, Keyboard::Key const& _leftKey, Keyboard::Key const& _rightKey);
+	Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _color, Terrain *_terrain, Keyboard::Key const& _leftKey, Keyboard::Key const& _rightKey, int _type);
 	~Snake() ;
 
 	void setSize(float const& _size) ;
@@ -43,6 +43,8 @@ public:
 
 	void draw(RenderWindow &window) ;
 
+	bool alive;
+
 private:
 	vector<ThickLine> lines ;
 	float size ;
@@ -59,7 +61,6 @@ private:
 
 	bool left ;
 	bool right ;
-	bool alive ;
 	bool lineTimerEnd ;
 	bool startTimeEnd ;
 	bool noLine ;
@@ -80,6 +81,6 @@ private:
 	Keyboard::Key rightKey ;
 
 	Sprite sprite;
-
+	int type;
 };
 

@@ -1,13 +1,14 @@
 #include "Snake.h"
 #include <math.h>
 
-Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _color, Terrain *_terrain, Keyboard::Key const& _leftKey, Keyboard::Key const& _rightKey)
+Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _color, Terrain *_terrain, Keyboard::Key const& _leftKey, Keyboard::Key const& _rightKey, int _type)
 {
 	size=3 ;
 	color = _color ;
 	position = _position ;
 	forward = _forward ;
-	sprite.setRotation(sin(forward.x / forward.y));
+	float angle = -atan(forward.x / forward.y) * 180 / PI;
+	sprite.setRotation(angle+1);
 	speed = 100 ;
 	turnSpeed = 3 ;
 
@@ -27,7 +28,7 @@ Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _
 	noLine = false ;
 
 	gap = size/speed*10 ;
-	delay = 3000 ;
+	delay = 3 ;
 	nextDelay = randFloat(delay) ;
 
 	terrain = _terrain ;
@@ -35,7 +36,7 @@ Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _
 	leftKey = _leftKey ;
 	rightKey = _rightKey ;
 
-
+	type = _type;
 	sprite.setScale(0.05, 0.05);
 }
 Snake::~Snake()
@@ -269,16 +270,16 @@ void Snake::control(float const& dt)
 	left = Keyboard::isKeyPressed(leftKey) ;
 	right = Keyboard::isKeyPressed(rightKey) ;
 
-	if (left) 
+	if (left && alive) 
 	{
 		forward += Vector2f(forward.y, -forward.x)*turnSpeed*dt;
-		sprite.rotate(-45*turnSpeed*dt);
+		sprite.rotate(-56*turnSpeed*dt);
 	}
 
-	if (right)
+	if (right && alive)
 	{
 		forward -= Vector2f(forward.y, -forward.x)*turnSpeed*dt;
-		sprite.rotate(45 * turnSpeed*dt);
+		sprite.rotate(56 * turnSpeed*dt);
 	}
 
 	forward /= Norm(forward) ;
@@ -337,10 +338,15 @@ void Snake::draw(RenderWindow &window)
 
 	if (!(tex.isSmooth()))
 	{
-		tex.loadFromFile("..\\Resource\\OrangeCat.png");
+		if (type == 0) tex.loadFromFile("..\\Resource\\OrangeCat.png");
+		if (type == 1) tex.loadFromFile("..\\Resource\\GreyCat.png");
+		if (type == 2) tex.loadFromFile("..\\Resource\\BlackCat.png");
+		if (type == 3) tex.loadFromFile("..\\Resource\\PurpleCat.png");
+
+
 		tex.setSmooth(true);	
 		sprite.setTexture(tex);
-		sprite.setOrigin(endCircle.getOrigin().x + 300, endCircle.getOrigin().y + 100);
+		sprite.setOrigin(endCircle.getOrigin().x + 225, endCircle.getOrigin().y + 100);
 	}
 
 	window.draw(sprite);
