@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include <math.h>
 
 Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _color, Terrain *_terrain, Keyboard::Key const& _leftKey, Keyboard::Key const& _rightKey)
 {
@@ -6,6 +7,7 @@ Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _
 	color = _color ;
 	position = _position ;
 	forward = _forward ;
+	sprite.setRotation(sin(forward.x / forward.y));
 	speed = 100 ;
 	turnSpeed = 3 ;
 
@@ -25,13 +27,16 @@ Snake::Snake(Vector2f const& _position, Vector2f const& _forward, Color const& _
 	noLine = false ;
 
 	gap = size/speed*10 ;
-	delay = 3 ;
+	delay = 3000 ;
 	nextDelay = randFloat(delay) ;
 
 	terrain = _terrain ;
 
 	leftKey = _leftKey ;
 	rightKey = _rightKey ;
+
+
+	sprite.setScale(0.05, 0.05);
 }
 Snake::~Snake()
 {
@@ -264,14 +269,25 @@ void Snake::control(float const& dt)
 	left = Keyboard::isKeyPressed(leftKey) ;
 	right = Keyboard::isKeyPressed(rightKey) ;
 
-	if(left) forward += Vector2f(forward.y, -forward.x)*turnSpeed*dt ;
-	if(right) forward -= Vector2f(forward.y, -forward.x)*turnSpeed*dt ;
+	if (left) 
+	{
+		forward += Vector2f(forward.y, -forward.x)*turnSpeed*dt;
+		sprite.rotate(-45*turnSpeed*dt);
+	}
+
+	if (right)
+	{
+		forward -= Vector2f(forward.y, -forward.x)*turnSpeed*dt;
+		sprite.rotate(45 * turnSpeed*dt);
+	}
 
 	forward /= Norm(forward) ;
 		
 	if(alive)
 		position += forward*speed*dt ;
 	endCircle.setPosition(position) ;
+
+	sprite.setPosition(position);
 }
 void Snake::update(float const& dt)
 {
@@ -307,10 +323,29 @@ void Snake::update(float const& dt)
 		lineTimerEnd = false ;
 	}
 }
+
+
+
+
 void Snake::draw(RenderWindow &window)
 {
-	window.draw(startCircle) ;
-	window.draw(endCircle) ;
+
+	//window.draw(startCircle) ;
+	//window.draw(endCircle) ;
+
+	Texture tex;
+
+	if (!(tex.isSmooth()))
+	{
+		tex.loadFromFile("..\\Resource\\OrangeCat.png");
+		tex.setSmooth(true);	
+		sprite.setTexture(tex);
+		sprite.setOrigin(endCircle.getOrigin().x + 300, endCircle.getOrigin().y + 100);
+	}
+
+	window.draw(sprite);
+	
+	endCircle.setTexture(&tex, true);
 	for(int i(0) ; i < lines.size() ; i++)
 	{
 		lines[i].draw(window) ;

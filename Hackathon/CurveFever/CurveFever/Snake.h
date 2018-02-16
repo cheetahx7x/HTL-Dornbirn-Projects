@@ -78,5 +78,8 @@ private:
 
 	Keyboard::Key leftKey ;
 	Keyboard::Key rightKey ;
+
+	Sprite sprite;
+
 };
 
