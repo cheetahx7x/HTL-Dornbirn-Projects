@@ -34,7 +34,6 @@ namespace _001_Ein_Auslesen_SQL_Database
         SqlConnection cnn;
         SqlCommand sqlCmd;
         string sql = null;
-        int columns;
         bool file = false;
         string curFile = @"C:\Users\jonyf\source\repos\HTL-Dornbirn-Projects\001_Ein-Auslesen_SQL_Database\001_Ein-Auslesen_SQL_Database\bin\Debug\SQLDaten.csv";
 
@@ -55,7 +54,6 @@ namespace _001_Ein_Auslesen_SQL_Database
                         connect(cmb_DB.Text);
                         try
                         {
-                            columns = 0;
                             sqlCmd = new SqlCommand(sql, cnn);
                             if(file == false)
                             {
