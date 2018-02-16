@@ -17,7 +17,7 @@ public:
 	
 	void setThickness(float const& _thickness) ;
 	void clear() ;
-
+	
 	vector<Vector2f> getLine() const ;
 	int getSize() const ;
 
@@ -29,6 +29,6 @@ private:
 	VertexArray VA ;
 	VertexArray lineVA ;
 
-	Color color;
+	Color color ;
 };
 

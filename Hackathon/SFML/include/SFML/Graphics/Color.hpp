@@ -80,7 +80,6 @@ public:
     ////////////////////////////////////////////////////////////
     // Static member data
     ////////////////////////////////////////////////////////////
-	static const Color Grey;		///< Grey predefined color
     static const Color Black;       ///< Black predefined color
     static const Color White;       ///< White predefined color
     static const Color Red;         ///< Red predefined color

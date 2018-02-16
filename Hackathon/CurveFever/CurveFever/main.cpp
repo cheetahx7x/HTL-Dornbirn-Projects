@@ -11,10 +11,10 @@ using namespace sf ;
 
 int main()
 {
-	int width = 1000, height = 800, playerNb ;
-	//cout<<"Terrain size : "<<endl ; 
-	//cout<<"Width : " ; cin>>width ; 
-	//cout<<"Height : " ; cin>>height ;
+	int width = 800, height = 800, playerNb ;
+	cout<<"Terrain size : "<<endl ; 
+	cout<<"Width : " ; cin>>width ; 
+	cout<<"Height : " ; cin>>height ;
 	cout<<"Number of players : " ; cin>>playerNb ;
 
 	vector<Keyboard::Key> keyBinding(playerNb*2+1,Keyboard::Unknown) ;
@@ -44,19 +44,6 @@ int main()
 	
 	ContextSettings antiAliasing ; antiAliasing.antialiasingLevel = 32 ;
 	RenderWindow window(VideoMode(width,height, 32), "CurveFever",Style::Default,antiAliasing);
-	Texture BackgroundTexture;
-	Sprite Background;
-	if (!BackgroundTexture.loadFromFile(("..\\Resource\\Background.png")))
-	{
-
-	}
-	Background.setTexture(BackgroundTexture);
-
-	Background.setPosition(0, 0);
-
-	window.draw(Background);
-	window.display();
-	
 	window.setFramerateLimit(60) ;
 
 	vector<Color> c;
@@ -101,10 +88,6 @@ int main()
 			terrain.updateBonus() ; //eventually add a bonus
 		
 			window.clear() ; //draw players, bonus and terrain borders
-			//Background.setRotation(Background.getRotation() + 1);
-			//if (Background.getPosition().x < 500) { Background.setPosition(Background.getPosition().x + 1, 0); }
-			//else Background.setPosition(0, 0);
-			window.draw(Background);
 			terrain.draw(window) ;
 			for(int i(0) ; i < playerNb ; i++)
 				player[i].draw(window) ;
