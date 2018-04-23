@@ -24,8 +24,12 @@ namespace _005_SpaceTrade_Shane_Johannes
             WindowState = FormWindowState.Maximized;
         }
 
-        private void WriteText(string message)
+        private void WriteText(string message, List<String> Buttons)
         {
+            if(sButtons.Count() == 2)
+            {
+                message = message + "\n\n" + sButtons[0] + "\n\n" + sButtons[1];
+            }
             string tmp = "";
             var index = 0;
             var timer = new System.Timers.Timer(50);
@@ -34,7 +38,18 @@ namespace _005_SpaceTrade_Shane_Johannes
                 {
                     tmp = tmp + message[index];
                     if (txt_inventory.InvokeRequired == true)
-                        txt_inventory.Invoke((MethodInvoker)delegate { txt_inventory.Text = tmp; });
+                        txt_inventory.Invoke((MethodInvoker)delegate 
+                        {
+                            txt_inventory.Text = tmp;
+                            txt_inventory.LinkArea = new LinkArea(0, 0);
+                            if(index == message.Length - 1)
+                            {
+                                txt_inventory.Links.Add(message.Length - Buttons[1].Length, Buttons[1].Length);
+                                txt_inventory.Links.Add(message.Length - Buttons[1].Length - Buttons[0].Length - 2, Buttons[0].Length);
+                                txt_inventory.Links[0].Name = "Inventar";
+                                txt_inventory.Links[1].Name = "Reiseziele";
+                            }
+                        });
 
                     else
                         txt_inventory.Text = txt_inventory.Text = tmp;
@@ -47,13 +62,28 @@ namespace _005_SpaceTrade_Shane_Johannes
                 }
             };
             timer.Enabled = true;
+
         }
+
+        private void Inventory()
+        {
+
+        }
+
+        List<String> sButtons = new List<string>();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            WriteText("asökfgjhaöwoirghöaowjsdöfgoijhawleuhgrödiushaöldkgjfhlseiuhdfglkjhlaskjdgfhöaoeuhföaodufhgöowEBFGÖOAEHGÖFUOAHSÖOGFDIUHAÖSOIGFHÖAODIFGHÖOIHdfldksjfhliehjgf");
+            txt_inventory.Links.Clear();
+            sButtons.Add("Inventar");
+            sButtons.Add("Reiseziele");
+            WriteText("Hallo das ist ein Test!", sButtons);
         }
 
-
+        private void txt_inventory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            txt_inventory.Text = e.Link.Name;
+        }
     }
 }
+

@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txt_inventory = new System.Windows.Forms.RichTextBox();
+            this.txt_inventory = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txt_inventory
             // 
-            this.txt_inventory.AccessibleRole = System.Windows.Forms.AccessibleRole.Dialog;
-            this.txt_inventory.BackColor = System.Drawing.Color.Black;
-            this.txt_inventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_inventory.CausesValidation = false;
-            this.txt_inventory.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txt_inventory.ActiveLinkColor = System.Drawing.Color.Teal;
             this.txt_inventory.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txt_inventory.ForeColor = System.Drawing.Color.White;
+            this.txt_inventory.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_inventory.ForeColor = System.Drawing.Color.Teal;
+            this.txt_inventory.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.txt_inventory.LinkColor = System.Drawing.Color.Teal;
             this.txt_inventory.Location = new System.Drawing.Point(0, 161);
+            this.txt_inventory.Margin = new System.Windows.Forms.Padding(0);
             this.txt_inventory.Name = "txt_inventory";
-            this.txt_inventory.ReadOnly = true;
-            this.txt_inventory.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.txt_inventory.Padding = new System.Windows.Forms.Padding(10);
             this.txt_inventory.Size = new System.Drawing.Size(426, 200);
-            this.txt_inventory.TabIndex = 2;
-            this.txt_inventory.TabStop = false;
-            this.txt_inventory.Text = "";
+            this.txt_inventory.TabIndex = 3;
+            this.txt_inventory.UseCompatibleTextRendering = true;
+            this.txt_inventory.VisitedLinkColor = System.Drawing.Color.Teal;
+            this.txt_inventory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.txt_inventory_LinkClicked);
             // 
             // MainForm
             // 
@@ -69,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox txt_inventory;
+        private System.Windows.Forms.LinkLabel txt_inventory;
     }
 }
 
