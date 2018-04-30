@@ -34,6 +34,7 @@
             // txt_inventory
             // 
             this.txt_inventory.ActiveLinkColor = System.Drawing.Color.Teal;
+            this.txt_inventory.AutoEllipsis = true;
             this.txt_inventory.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txt_inventory.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_inventory.ForeColor = System.Drawing.Color.Teal;
