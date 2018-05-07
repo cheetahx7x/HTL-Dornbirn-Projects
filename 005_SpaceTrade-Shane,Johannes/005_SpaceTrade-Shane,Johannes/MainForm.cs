@@ -25,9 +25,10 @@ namespace _005_SpaceTrade_Shane_Johannes
             WindowState = FormWindowState.Maximized;
         }
 
-        private void WriteText(string message, List<String> Buttons, int speed)
+        private void WriteText(LinkLabel Label, string message, List<String> Buttons, int speed)
         {
-            if(Buttons.Count() == 2)
+            Label.Links.Clear();
+            if (Buttons.Count() == 2)
             {
                 message = message + "\n\n" + sButtons[0] + "\n\n" + sButtons[1];
             }
@@ -38,25 +39,25 @@ namespace _005_SpaceTrade_Shane_Johannes
                 if (index < message.Length)
                 {
                     tmp = tmp + message[index];
-                    if (txt_inventory.InvokeRequired == true)
-                        txt_inventory.Invoke((MethodInvoker)delegate 
+                    if (Label.InvokeRequired == true)
+                        Label.Invoke((MethodInvoker)delegate 
                         {
-                            txt_inventory.Text = tmp;
-                            txt_inventory.LinkArea = new LinkArea(0, 0);
+                            Label.Text = tmp;
+                            Label.LinkArea = new LinkArea(0, 0);
                             if(index == message.Length - 1)
                             {
                                 if(Buttons.Count() == 2)
                                 {
-                                    txt_inventory.Links.Add(message.Length - Buttons[1].Length, Buttons[1].Length);
-                                    txt_inventory.Links.Add(message.Length - Buttons[1].Length - Buttons[0].Length - 2, Buttons[0].Length);
-                                    txt_inventory.Links[0].Name = "Inventar";
-                                    txt_inventory.Links[1].Name = "Reiseziele";
+                                    Label.Links.Add(message.Length - Buttons[1].Length, Buttons[1].Length);
+                                    Label.Links.Add(message.Length - Buttons[1].Length - Buttons[0].Length - 2, Buttons[0].Length);
+                                    Label.Links[0].Name = "Inventar";
+                                    Label.Links[1].Name = "Reiseziele";
                                 }
                             }
                         });
 
                     else
-                        txt_inventory.Text = txt_inventory.Text = tmp;
+                        Label.Text = Label.Text = tmp;
                     index++;
                 }
                 else
@@ -74,31 +75,32 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         }
 
-        DBConnection con = new DBConnection("5.9.13.41", "c", "Rvmk9!17", "spacetrade");
+        DBConnection conon = new DBConnection("5.9.13.41", "c", "Rvmk9!17", "spacetrade");
+        
+
         List<String> sButtons = new List<string>();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            txt_inventory.Links.Clear();
             sButtons.Add("Inventar");
             sButtons.Add("Reiseziele");
-            WriteText("A long time ago in a galaxy far, far away ...", sButtons, 50);
+            WriteText(txt_main, "A long time ago in a galaxy far, far away ...", sButtons, 50);
         }
 
-        private void txt_inventory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void txt_main_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(e.Link.Name == "Inventar")
+            if (e.Link.Name == "Inventar")
             {
                 string Text = "Inventar\n\n";
 
-                List<string> Inventory = con.Select("SELECT * FROM Erze", 0);
+                List<string> Inventory = conon.Select("SELECT * FROM Erze", 0);
 
                 foreach(string s in Inventory)
                 {
                     Text = Text + s + "\n";
                 }
 
-                WriteText(Text, new List<String>(), 1);
+                WriteText(txt_inventory, Text, new List<string>(), 1);
             }
         }
     }

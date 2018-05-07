@@ -83,6 +83,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             connection.Close();
         }
 
-
+        public void DBAbgleichServerClient()
+        {
+            List<string> tmplist = new List<string>();
+            tmplist = Select("SELECT * FROM Erze", 1);
+            if (tmplist == Select("SELECT * FROM Erze", 1))
+            {
+                
+            }
+        }
     }
 }
