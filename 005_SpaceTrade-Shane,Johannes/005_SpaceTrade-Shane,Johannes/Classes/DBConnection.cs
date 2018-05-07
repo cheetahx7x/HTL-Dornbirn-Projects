@@ -91,6 +91,7 @@ namespace _005_SpaceTrade_Shane_Johannes
             if (tmplist == Select("SELECT * FROM Erze", 1))
             {
                 Client.connect();
+                
             }
         }
     }
