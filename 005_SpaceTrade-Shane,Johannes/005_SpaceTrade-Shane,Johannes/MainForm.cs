@@ -82,6 +82,7 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            conon.DBAbgleichServerClient();
             sButtons.Add("Inventar");
             sButtons.Add("Reiseziele");
             WriteText(txt_main, "A long time ago in a galaxy far, far away ...", sButtons, 50);

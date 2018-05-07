@@ -85,11 +85,12 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         public void DBAbgleichServerClient()
         {
+            ClientDB Client = null;
             List<string> tmplist = new List<string>();
             tmplist = Select("SELECT * FROM Erze", 1);
             if (tmplist == Select("SELECT * FROM Erze", 1))
             {
-                
+                Client.connect();
             }
         }
     }

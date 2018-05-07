@@ -15,7 +15,7 @@ namespace _005_SpaceTrade_Shane_Johannes
         SqlConnection cnn;
         SqlCommand sqlCmd;
 
-        private void connect(string database)
+        public void connect()
         {
             cnn = new SqlConnection(connetionString);
             try
@@ -24,13 +24,42 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             catch(Exception e)
             {
-                
+                MessageBox.Show(e.Message, "Shit gone wrong", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
-        private void disconnect()
+        public void disconnect()
         {
             cnn.Close();
+        }
+
+        public void Update(String query)
+        {
+            connect();
+            sqlCmd = new SqlCommand(query, cnn);
+
+            //Execute command
+            sqlCmd.ExecuteNonQuery();
+            disconnect();
+        }
+
+        public List<string> Select(String query, int column)
+        {
+
+            //Create a data reader and Execute the command
+            List<string> list = new List<string>();
+            //Create Command
+            connect();
+            sqlCmd = new SqlCommand(query, cnn);
+            using (SqlDataReader reader = sqlCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetString(column));
+                }
+            }
+            disconnect();
+            return list;
         }
     }
 }
