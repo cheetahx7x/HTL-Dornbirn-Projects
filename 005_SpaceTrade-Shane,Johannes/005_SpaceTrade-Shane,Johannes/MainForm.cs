@@ -179,6 +179,7 @@ namespace _005_SpaceTrade_Shane_Johannes
                     txt_Username.Dispose();
                     btn_Login.Dispose();
                     txt_main.Text = "";
+                    Gamestart();
                 }
                 else
                 {
@@ -217,6 +218,7 @@ namespace _005_SpaceTrade_Shane_Johannes
                             txt_Username.Dispose();
                             btn_Login.Dispose();
                             txt_main.Text = "";
+                            Gamestart();
                         }
                         else
                         {
@@ -239,6 +241,11 @@ namespace _005_SpaceTrade_Shane_Johannes
                     txt_Username.ReadOnly = false;
                 }
             }
+        }
+
+        void Gamestart()
+        {
+
         }
     }
 }
