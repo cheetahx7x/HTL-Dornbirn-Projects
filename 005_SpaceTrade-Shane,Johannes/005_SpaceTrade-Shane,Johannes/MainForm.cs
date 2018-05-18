@@ -47,13 +47,19 @@ namespace _005_SpaceTrade_Shane_Johannes
         Linkclick tmpLink = new Linkclick();
 
 
+        Image Planet1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice1;
+        Image Planet2 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice2;
+        Image Station1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceniceS1;
+
+
+
 
 
 
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            txt_main.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.WorkingArea.Width, 0);
             string Text = "Du hast noch keinen Account? Registrieren";
             Add_Link("Registrieren", Text.Length - "Registrieren".Length, Text.Length);
             WriteText(txt_main, Text, Links, 1);
@@ -218,6 +224,9 @@ namespace _005_SpaceTrade_Shane_Johannes
                             txt_Username.Dispose();
                             btn_Login.Dispose();
                             txt_main.Text = "";
+                            WriteText(txt_main, "Es herrscht ein Krieg und du und deine Zivilisation seid gezwungen von deinem Heimatplaneten zu fliehen. Der Krieg breitet sich immer weiter aus und so musst ihr immer weiter weg fliehen. Ihr warpt in konfliktlose Bereiche, die dadurch leider immer sehr Resourcenarm sind. Deswegen werden kleine Schiffe losgeschickt die Resourcen sammeln, um das Überleben von deiner Zivilisation sicherzustellen und du bist der Captain einer dieser Schiffe.", new List<Linkclick>(), 50);
+                            System.Threading.Thread.Sleep(5000);
+                            txt_main.Text = "";
                             Gamestart();
                         }
                         else
@@ -245,6 +254,8 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         void Gamestart()
         {
+            Main_Picture.Image = Station1;
+            Main_Picture.Visible = true;
 
         }
     }

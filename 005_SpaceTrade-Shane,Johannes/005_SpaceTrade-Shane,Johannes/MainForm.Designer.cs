@@ -30,19 +30,21 @@
         {
             this.txt_main = new System.Windows.Forms.LinkLabel();
             this.txt_inventory = new System.Windows.Forms.LinkLabel();
-            this.Sun = new System.Windows.Forms.PictureBox();
+            this.Main_Picture = new System.Windows.Forms.PictureBox();
             this.txt_information = new System.Windows.Forms.Label();
             this.txt_Username = new System.Windows.Forms.TextBox();
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.txt_Fehler = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Sun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_main
             // 
             this.txt_main.ActiveLinkColor = System.Drawing.Color.Teal;
+            this.txt_main.AutoEllipsis = true;
             this.txt_main.AutoSize = true;
+            this.txt_main.CausesValidation = false;
             this.txt_main.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txt_main.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_main.ForeColor = System.Drawing.Color.Teal;
@@ -72,14 +74,16 @@
             this.txt_inventory.TabIndex = 4;
             this.txt_inventory.VisitedLinkColor = System.Drawing.Color.Teal;
             // 
-            // Sun
+            // Main_Picture
             // 
-            this.Sun.Location = new System.Drawing.Point(172, 149);
-            this.Sun.Name = "Sun";
-            this.Sun.Size = new System.Drawing.Size(100, 50);
-            this.Sun.TabIndex = 5;
-            this.Sun.TabStop = false;
-            this.Sun.Visible = false;
+            this.Main_Picture.ErrorImage = null;
+            this.Main_Picture.InitialImage = null;
+            this.Main_Picture.Location = new System.Drawing.Point(172, 149);
+            this.Main_Picture.Name = "Main_Picture";
+            this.Main_Picture.Size = new System.Drawing.Size(100, 50);
+            this.Main_Picture.TabIndex = 5;
+            this.Main_Picture.TabStop = false;
+            this.Main_Picture.Visible = false;
             // 
             // txt_information
             // 
@@ -149,7 +153,7 @@
             this.Controls.Add(this.txt_Password);
             this.Controls.Add(this.txt_Username);
             this.Controls.Add(this.txt_information);
-            this.Controls.Add(this.Sun);
+            this.Controls.Add(this.Main_Picture);
             this.Controls.Add(this.txt_inventory);
             this.Controls.Add(this.txt_main);
             this.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,7 +163,7 @@
             this.Name = "MainForm";
             this.Text = "SpaceTrade";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Sun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,7 +173,7 @@
 
         private System.Windows.Forms.LinkLabel txt_main;
         private System.Windows.Forms.LinkLabel txt_inventory;
-        private System.Windows.Forms.PictureBox Sun;
+        private System.Windows.Forms.PictureBox Main_Picture;
         private System.Windows.Forms.Label txt_information;
         private System.Windows.Forms.TextBox txt_Username;
         private System.Windows.Forms.TextBox txt_Password;
