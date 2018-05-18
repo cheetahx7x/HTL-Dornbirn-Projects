@@ -12,6 +12,8 @@ namespace _005_SpaceTrade_Shane_Johannes
         public String bearbeiter;
         public int bearbeiterID;
         private MySqlConnection connection;
+        List<string> tmplist = new List<string>();
+        ClientDB Client = new ClientDB();
 
         public DBConnection(String server, String username, String pw, String db)
         {
@@ -26,7 +28,7 @@ namespace _005_SpaceTrade_Shane_Johannes
             connection = new MySqlConnection(builder.ConnectionString);
         }
 
-        public void openConnection()
+        public void connect()
         {
             try
             {
@@ -51,47 +53,130 @@ namespace _005_SpaceTrade_Shane_Johannes
         }
 
         public void Update(String query)
-        { 
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            //Execute command
-            cmd.ExecuteNonQuery();
-            
+        {
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                //Execute command
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public List<string> Select(String query, int column)
         {
-
-            //Create a data reader and Execute the command
-            List<string> list = new List<string>();
+            tmplist.Clear();
             //Create Command
-            openConnection();
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            using (MySqlDataReader reader = cmd.ExecuteReader())
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
-                while (reader.Read())
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    list.Add(reader.GetString(column));
+                    while (reader.Read())
+                    {
+                        tmplist.Add(reader.GetString(column));
+                    }
                 }
             }
-            close();
-            return list;
+            return tmplist;
         }
 
-        public void close()
+        public void disconnect()
         {
             connection.Close();
         }
 
-        public void DBAbgleichServerClient()
+        public void DBTuningTableClientServer(string tablenameClient, string tablenameServer, int[] ColumnsClient, int[] ColumnsServer)
         {
-            ClientDB Client = null;
-            List<string> tmplist = new List<string>();
-            tmplist = Select("SELECT * FROM Erze", 1);
-            if (tmplist == Select("SELECT * FROM Erze", 1))
+
+        }
+
+        public void DBTuningTableServerClient(string tablenameServer, string tablenameClient, int[] ColumnsServer, int[] ColumnsClient)
+        {
+            List<string> data = new List<string>();
+            string Columnname = "";
+
+            bool empty = false;
+            bool success = false;
+
+            for (int i = 0; i < ColumnsServer.Length; i++)
             {
+                int Count = 0;
+                do
+                {
+                    data = new List<string>();
+                    data = Select("SELECT * FROM " + tablenameServer, ColumnsServer[i]);
+                    if (data == Select("SELECT * FROM " + tablenameServer, ColumnsServer[i]))
+                    {
+                        success = true;
+                    }
+                    Count++;
+                } while (success == false && Count < 10);
+                if(success == true)
+                {
+                    success = false;
+                }
+                else
+                {
+                    MessageBox.Show("Überprüfen Sie ihre Internetverbindung!", "Datenabgleich fehlgeschlagen!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
+
                 Client.connect();
-                
+                if (Client.Select("Select * from " + tablenameClient, 0).Count == 0)
+                {
+                    empty = true;
+                }
+
+                Columnname = Client.Select("SELECT column_name FROM information_schema.columns WHERE table_name = '" + tablenameClient + "' and ORDINAL_POSITION = '" + ColumnsClient[i] + "'", 0)[0];
+
+                for (int j = 0; j<data.Count;j++)
+                {
+                    if(empty == true)
+                    {
+                        Client.Update("INSERT INTO " + tablenameClient + "(" + Columnname + ") VALUES (\'" + data[j] + "\')");
+                    }
+                    else
+                    {
+                        Client.Update("UPDATE " + tablenameClient + " SET " + Columnname + " = '" + data[j] + "\' WHERE ID = " + (j+1));
+                    }
+                }
+                empty = false;
+
+                Client.disconnect();
+            }
+        }
+
+        public void DBAbgleichServerClientFirst()
+        {
+            Client.ClearLocalDB();
+            DBTuningTableServerClient("Erze", "Erze", new int[2] { 1, 2 }, new int[2] { 2, 3 });
+            DBTuningTableServerClient("Materialien", "Materialien", new int[2] { 1, 2 }, new int[2] { 2, 3 });
+        }
+
+        public void DBTuningServerClient(string username)
+        {
+            Client.ClearLocalDB();
+            DBTuningTableServerClient("Erze", "Erze", new int[2] { 1, 2 }, new int[2] { 2, 3 });
+            DBTuningTableServerClient("Materialien", "Materialien", new int[2] { 1, 2 }, new int[2] { 2, 3 });
+            DBTuningTableServerClient("Erze_M", "Erze", new int[1] { 2 }, new int[1] { 4 });
+            DBTuningTableServerClient("Materialien_M", "Materialien", new int[1] { 2 }, new int[1] { 4 });
+        }
+
+        public void DBTuningClientServer(string username)
+        {
+
+        }
+
+        public bool DBUserCheck(string username, string pwhash)
+        {
+            connect();
+            Select("SELECT * FROM benutzer WHERE name = '" + username + "' and pw = '" + pwhash + "'", 1);
+            disconnect();
+            if(tmplist.Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

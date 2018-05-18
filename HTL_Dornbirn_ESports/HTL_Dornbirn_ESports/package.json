@@ -1,0 +1,9 @@
+{
+  "name": "htl_dornbirn_esports",
+  "version": "0.0.0",
+  "description": "HTL_Dornbirn_ESports",
+  "main": "app.js",
+  "author": {
+    "name": "jonyf"
+  }
+}
