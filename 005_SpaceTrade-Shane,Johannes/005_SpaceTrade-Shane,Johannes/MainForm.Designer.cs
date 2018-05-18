@@ -78,9 +78,9 @@
             // 
             this.Main_Picture.ErrorImage = null;
             this.Main_Picture.InitialImage = null;
-            this.Main_Picture.Location = new System.Drawing.Point(172, 149);
+            this.Main_Picture.Location = new System.Drawing.Point(172, 56);
             this.Main_Picture.Name = "Main_Picture";
-            this.Main_Picture.Size = new System.Drawing.Size(100, 50);
+            this.Main_Picture.Size = new System.Drawing.Size(712, 305);
             this.Main_Picture.TabIndex = 5;
             this.Main_Picture.TabStop = false;
             this.Main_Picture.Visible = false;

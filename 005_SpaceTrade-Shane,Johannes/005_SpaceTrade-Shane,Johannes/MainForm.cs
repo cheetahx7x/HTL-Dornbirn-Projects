@@ -50,6 +50,7 @@ namespace _005_SpaceTrade_Shane_Johannes
         Image Planet1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice1;
         Image Planet2 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice2;
         Image Station1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceniceS1;
+        Image Mothership = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceshipnice1;
 
 
 
@@ -254,7 +255,7 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         void Gamestart()
         {
-            Main_Picture.Image = Station1;
+            Main_Picture.Image = Mothership;
             Main_Picture.Visible = true;
 
         }

@@ -112,6 +112,7 @@
     <None Include="Resources\spacenice1.png" />
     <None Include="Resources\spaceniceS1.png" />
     <None Include="Resources\spacenice2.png" />
+    <None Include="Resources\spaceshipnice1.png" />
     <Content Include="Textbox.bmp" />
   </ItemGroup>
   <ItemGroup>
