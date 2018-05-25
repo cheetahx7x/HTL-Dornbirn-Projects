@@ -84,6 +84,7 @@
             this.Main_Picture.TabIndex = 5;
             this.Main_Picture.TabStop = false;
             this.Main_Picture.Visible = false;
+            this.Main_Picture.Click += new System.EventHandler(this.Main_Picture_Click);
             // 
             // txt_information
             // 

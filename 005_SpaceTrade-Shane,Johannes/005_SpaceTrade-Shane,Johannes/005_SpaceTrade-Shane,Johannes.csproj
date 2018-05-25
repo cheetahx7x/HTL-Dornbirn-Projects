@@ -67,6 +67,12 @@
     <Compile Include="Classes\Playerdata.cs" />
     <Compile Include="Classes\Spacecraft.cs" />
     <Compile Include="Classes\DBConnection.cs" />
+    <Compile Include="Interface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface.Designer.cs">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Interface.resx">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +122,7 @@
     <None Include="Resources\spaceniceS1.png" />
     <None Include="Resources\spacenice2.png" />
     <None Include="Resources\spaceshipnice1.png" />
+    <None Include="Resources\Interface1.png" />
     <Content Include="Textbox.bmp" />
   </ItemGroup>
   <ItemGroup>

@@ -259,6 +259,17 @@ namespace _005_SpaceTrade_Shane_Johannes
             Main_Picture.Visible = true;
 
         }
+
+        private void Main_Picture_Click(object sender, EventArgs e)
+        {
+            if(Main_Picture.Image == Mothership)
+            {
+                using (Interface box = new Interface())
+                {
+                    box.ShowDialog();
+                }
+            }
+        }
     }
 }
 
