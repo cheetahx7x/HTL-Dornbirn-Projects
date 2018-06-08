@@ -40,17 +40,17 @@ namespace _005_SpaceTrade_Shane_Johannes
 
 
 
-
+        Rectangle ScreenSize = new Rectangle(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
         DBConnection conon = new DBConnection("5.9.13.41", "c", "Rvmk9!17", "spacetrade");
         ClientDB conof = new ClientDB();
         List<Linkclick> Links = new List<Linkclick>();
         Linkclick tmpLink = new Linkclick();
-
+        Size Modulesize = new Size(203, 95);
 
         Image Planet1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice1;
         Image Planet2 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice2;
         Image Station1 = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceniceS1;
-        Image Mothership = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceshipnice1;
+        Image Mothership = _005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceshipm1;
 
 
 
@@ -60,6 +60,18 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Main_Picture.Width = Mothership.Width;
+            Main_Picture.Height = Mothership.Height;
+            Main_Picture.Location = new Point(ScreenSize.Width / 2 - Main_Picture.Size.Width / 2, ScreenSize.Height / 2 - Main_Picture.Size.Height / 2);
+            Module1.Size = Modulesize;
+            Module2.Size = Modulesize;
+            Module3.Size = Modulesize;
+            Module4.Size = Modulesize;
+            Module1.Location = new Point(Main_Picture.Location.X + 156, Main_Picture.Location.Y + 165);
+            Module2.Location = new Point(Main_Picture.Location.X + 369, Main_Picture.Location.Y + 270);
+            Module3.Location = new Point(Main_Picture.Location.X + 156, Main_Picture.Location.Y + 270);
+            Module4.Location = new Point(Main_Picture.Location.X + 369, Main_Picture.Location.Y + 165);
+
             txt_main.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.WorkingArea.Width, 0);
             string Text = "Du hast noch keinen Account? Registrieren";
             Add_Link("Registrieren", Text.Length - "Registrieren".Length, Text.Length);
@@ -184,6 +196,7 @@ namespace _005_SpaceTrade_Shane_Johannes
                     conon.disconnect();
                     txt_Password.Dispose();
                     txt_Username.Dispose();
+                    txt_Fehler.Visible = false;
                     btn_Login.Dispose();
                     txt_main.Text = "";
                     Gamestart();
@@ -223,6 +236,7 @@ namespace _005_SpaceTrade_Shane_Johannes
                             conon.disconnect();
                             txt_Password.Dispose();
                             txt_Username.Dispose();
+                            txt_Fehler.Visible = false;
                             btn_Login.Dispose();
                             txt_main.Text = "";
                             WriteText(txt_main, "Es herrscht ein Krieg und du und deine Zivilisation seid gezwungen von deinem Heimatplaneten zu fliehen. Der Krieg breitet sich immer weiter aus und so musst ihr immer weiter weg fliehen. Ihr warpt in konfliktlose Bereiche, die dadurch leider immer sehr Resourcenarm sind. Deswegen werden kleine Schiffe losgeschickt die Resourcen sammeln, um das Überleben von deiner Zivilisation sicherzustellen und du bist der Captain einer dieser Schiffe.", new List<Linkclick>(), 50);
@@ -255,9 +269,17 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         void Gamestart()
         {
+            Main_Picture.Enabled = true;
             Main_Picture.Image = Mothership;
             Main_Picture.Visible = true;
-
+            Module1.Visible = true;
+            Module2.Visible = true;
+            Module3.Visible = true;
+            Module4.Visible = true;
+            Module1.Enabled = true;
+            Module2.Enabled = true;
+            Module3.Enabled = true;
+            Module4.Enabled = true;
         }
 
         private void Main_Picture_Click(object sender, EventArgs e)
@@ -266,7 +288,67 @@ namespace _005_SpaceTrade_Shane_Johannes
             {
                 using (Interface box = new Interface())
                 {
-                    box.ShowDialog();
+                    //box.ShowDialog();
+                }
+            }
+        }
+
+        private void Module2_Click(object sender, EventArgs e)
+        {
+            using (Interface box = new Interface())
+            {
+                box.ShowDialog();
+            }
+        }
+
+        private void Module1_Click(object sender, EventArgs e)
+        {
+            using (Interface box = new Interface())
+            {
+                box.ShowDialog();
+            }
+        }
+
+        private void Module3_Click(object sender, EventArgs e)
+        {
+            using (Interface box = new Interface())
+            {
+                box.ShowDialog();
+            }
+        }
+
+        private void Module4_Click(object sender, EventArgs e)
+        {
+            using (Interface box = new Interface())
+            {
+                box.ShowDialog();
+            }
+        }
+
+        private void txt_Username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(null,null);
+            }
+        }
+
+        private void txt_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(null, null);
+            }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                if(MessageBox.Show("Exit?", "Do you really wanna quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    conon.DBAbgleichClientServer();
+                    this.Close();
                 }
             }
         }

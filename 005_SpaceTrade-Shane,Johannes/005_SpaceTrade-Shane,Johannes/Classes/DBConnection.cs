@@ -151,6 +151,16 @@ namespace _005_SpaceTrade_Shane_Johannes
             DBTuningTableServerClient("Materialien", "Materialien", new int[2] { 1, 2 }, new int[2] { 2, 3 });
         }
 
+        public void DBAbgleichServerClient()
+        {
+
+        }
+
+        public void DBAbgleichClientServer()
+        {
+
+        }
+
         public void DBTuningServerClient(string username)
         {
             Client.ClearLocalDB();
