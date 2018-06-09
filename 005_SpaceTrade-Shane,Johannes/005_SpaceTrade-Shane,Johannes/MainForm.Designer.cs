@@ -36,15 +36,7 @@
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.txt_Fehler = new System.Windows.Forms.Label();
-            this.Module1 = new System.Windows.Forms.PictureBox();
-            this.Module4 = new System.Windows.Forms.PictureBox();
-            this.Module3 = new System.Windows.Forms.PictureBox();
-            this.Module2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module2)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_main
@@ -154,66 +146,12 @@
             this.txt_Fehler.Size = new System.Drawing.Size(0, 18);
             this.txt_Fehler.TabIndex = 11;
             // 
-            // Module1
-            // 
-            this.Module1.BackColor = System.Drawing.Color.Aqua;
-            this.Module1.Enabled = false;
-            this.Module1.ErrorImage = null;
-            this.Module1.InitialImage = null;
-            this.Module1.Location = new System.Drawing.Point(964, 55);
-            this.Module1.Name = "Module1";
-            this.Module1.Size = new System.Drawing.Size(100, 50);
-            this.Module1.TabIndex = 12;
-            this.Module1.TabStop = false;
-            this.Module1.Visible = false;
-            this.Module1.Click += new System.EventHandler(this.Module1_Click);
-            // 
-            // Module4
-            // 
-            this.Module4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.Module4.Enabled = false;
-            this.Module4.Location = new System.Drawing.Point(964, 167);
-            this.Module4.Name = "Module4";
-            this.Module4.Size = new System.Drawing.Size(100, 50);
-            this.Module4.TabIndex = 15;
-            this.Module4.TabStop = false;
-            this.Module4.Visible = false;
-            this.Module4.Click += new System.EventHandler(this.Module4_Click);
-            // 
-            // Module3
-            // 
-            this.Module3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Module3.Enabled = false;
-            this.Module3.Location = new System.Drawing.Point(964, 111);
-            this.Module3.Name = "Module3";
-            this.Module3.Size = new System.Drawing.Size(100, 50);
-            this.Module3.TabIndex = 14;
-            this.Module3.TabStop = false;
-            this.Module3.Visible = false;
-            this.Module3.Click += new System.EventHandler(this.Module3_Click);
-            // 
-            // Module2
-            // 
-            this.Module2.BackColor = System.Drawing.Color.Red;
-            this.Module2.Enabled = false;
-            this.Module2.Location = new System.Drawing.Point(964, -1);
-            this.Module2.Name = "Module2";
-            this.Module2.Size = new System.Drawing.Size(100, 50);
-            this.Module2.TabIndex = 13;
-            this.Module2.TabStop = false;
-            this.Module2.Visible = false;
-            this.Module2.Click += new System.EventHandler(this.Module2_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1064, 361);
-            this.Controls.Add(this.Module4);
-            this.Controls.Add(this.Module3);
-            this.Controls.Add(this.Module2);
-            this.Controls.Add(this.Module1);
             this.Controls.Add(this.txt_Fehler);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.txt_Password);
@@ -229,12 +167,9 @@
             this.Name = "MainForm";
             this.Text = "SpaceTrade";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Module2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,10 +185,6 @@
         private System.Windows.Forms.TextBox txt_Password;
         private System.Windows.Forms.Button btn_Login;
         private System.Windows.Forms.Label txt_Fehler;
-        private System.Windows.Forms.PictureBox Module1;
-        private System.Windows.Forms.PictureBox Module2;
-        private System.Windows.Forms.PictureBox Module3;
-        private System.Windows.Forms.PictureBox Module4;
     }
 }
 
