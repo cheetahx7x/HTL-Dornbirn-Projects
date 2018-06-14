@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_exit = new System.Windows.Forms.Button();
+            this.btn_next_sys = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_exit
@@ -42,13 +43,23 @@
             this.btn_exit.Text = "X";
             this.btn_exit.UseVisualStyleBackColor = true;
             // 
+            // btn_next_sys
+            // 
+            this.btn_next_sys.Location = new System.Drawing.Point(566, 515);
+            this.btn_next_sys.Name = "btn_next_sys";
+            this.btn_next_sys.Size = new System.Drawing.Size(122, 23);
+            this.btn_next_sys.TabIndex = 1;
+            this.btn_next_sys.Text = "Travel to next System";
+            this.btn_next_sys.UseVisualStyleBackColor = true;
+            this.btn_next_sys.Click += new System.EventHandler(this.btn_next_sys_Click);
+            // 
             // Interface
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::_005_SpaceTrade_Shane_Johannes.Properties.Resources.Interface1;
             this.ClientSize = new System.Drawing.Size(700, 550);
+            this.Controls.Add(this.btn_next_sys);
             this.Controls.Add(this.btn_exit);
             this.Font = new System.Drawing.Font("Modern No. 20", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -63,5 +74,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Button btn_next_sys;
     }
 }

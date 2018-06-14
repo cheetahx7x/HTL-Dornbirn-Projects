@@ -36,7 +36,23 @@
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.txt_Fehler = new System.Windows.Forms.Label();
+            this.Module1 = new System.Windows.Forms.PictureBox();
+            this.Module2 = new System.Windows.Forms.PictureBox();
+            this.Module3 = new System.Windows.Forms.PictureBox();
+            this.Module4 = new System.Windows.Forms.PictureBox();
+            this.Module5 = new System.Windows.Forms.PictureBox();
+            this.Module6 = new System.Windows.Forms.PictureBox();
+            this.Module8 = new System.Windows.Forms.PictureBox();
+            this.Module7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module7)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_main
@@ -146,12 +162,108 @@
             this.txt_Fehler.Size = new System.Drawing.Size(0, 18);
             this.txt_Fehler.TabIndex = 11;
             // 
+            // Module1
+            // 
+            this.Module1.BackColor = System.Drawing.Color.Transparent;
+            this.Module1.ErrorImage = null;
+            this.Module1.InitialImage = null;
+            this.Module1.Location = new System.Drawing.Point(1029, 348);
+            this.Module1.Name = "Module1";
+            this.Module1.Size = new System.Drawing.Size(35, 13);
+            this.Module1.TabIndex = 12;
+            this.Module1.TabStop = false;
+            // 
+            // Module2
+            // 
+            this.Module2.BackColor = System.Drawing.Color.Transparent;
+            this.Module2.ErrorImage = null;
+            this.Module2.InitialImage = null;
+            this.Module2.Location = new System.Drawing.Point(1029, 336);
+            this.Module2.Name = "Module2";
+            this.Module2.Size = new System.Drawing.Size(34, 13);
+            this.Module2.TabIndex = 13;
+            this.Module2.TabStop = false;
+            // 
+            // Module3
+            // 
+            this.Module3.BackColor = System.Drawing.Color.Transparent;
+            this.Module3.ErrorImage = null;
+            this.Module3.InitialImage = null;
+            this.Module3.Location = new System.Drawing.Point(1029, 320);
+            this.Module3.Name = "Module3";
+            this.Module3.Size = new System.Drawing.Size(34, 13);
+            this.Module3.TabIndex = 14;
+            this.Module3.TabStop = false;
+            // 
+            // Module4
+            // 
+            this.Module4.BackColor = System.Drawing.Color.Transparent;
+            this.Module4.ErrorImage = null;
+            this.Module4.InitialImage = null;
+            this.Module4.Location = new System.Drawing.Point(1030, 301);
+            this.Module4.Name = "Module4";
+            this.Module4.Size = new System.Drawing.Size(34, 13);
+            this.Module4.TabIndex = 15;
+            this.Module4.TabStop = false;
+            // 
+            // Module5
+            // 
+            this.Module5.BackColor = System.Drawing.Color.Transparent;
+            this.Module5.ErrorImage = null;
+            this.Module5.InitialImage = null;
+            this.Module5.Location = new System.Drawing.Point(1030, 282);
+            this.Module5.Name = "Module5";
+            this.Module5.Size = new System.Drawing.Size(34, 13);
+            this.Module5.TabIndex = 16;
+            this.Module5.TabStop = false;
+            // 
+            // Module6
+            // 
+            this.Module6.BackColor = System.Drawing.Color.Transparent;
+            this.Module6.ErrorImage = null;
+            this.Module6.InitialImage = null;
+            this.Module6.Location = new System.Drawing.Point(1030, 263);
+            this.Module6.Name = "Module6";
+            this.Module6.Size = new System.Drawing.Size(34, 13);
+            this.Module6.TabIndex = 17;
+            this.Module6.TabStop = false;
+            // 
+            // Module8
+            // 
+            this.Module8.BackColor = System.Drawing.Color.Transparent;
+            this.Module8.ErrorImage = null;
+            this.Module8.InitialImage = null;
+            this.Module8.Location = new System.Drawing.Point(1029, 225);
+            this.Module8.Name = "Module8";
+            this.Module8.Size = new System.Drawing.Size(34, 13);
+            this.Module8.TabIndex = 18;
+            this.Module8.TabStop = false;
+            // 
+            // Module7
+            // 
+            this.Module7.BackColor = System.Drawing.Color.Transparent;
+            this.Module7.ErrorImage = null;
+            this.Module7.InitialImage = null;
+            this.Module7.Location = new System.Drawing.Point(1030, 244);
+            this.Module7.Name = "Module7";
+            this.Module7.Size = new System.Drawing.Size(34, 13);
+            this.Module7.TabIndex = 19;
+            this.Module7.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1064, 361);
+            this.Controls.Add(this.Module7);
+            this.Controls.Add(this.Module8);
+            this.Controls.Add(this.Module6);
+            this.Controls.Add(this.Module5);
+            this.Controls.Add(this.Module4);
+            this.Controls.Add(this.Module3);
+            this.Controls.Add(this.Module2);
+            this.Controls.Add(this.Module1);
             this.Controls.Add(this.txt_Fehler);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.txt_Password);
@@ -170,6 +282,14 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Main_Picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Module7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,6 +305,14 @@
         private System.Windows.Forms.TextBox txt_Password;
         private System.Windows.Forms.Button btn_Login;
         private System.Windows.Forms.Label txt_Fehler;
+        private System.Windows.Forms.PictureBox Module1;
+        private System.Windows.Forms.PictureBox Module2;
+        private System.Windows.Forms.PictureBox Module3;
+        private System.Windows.Forms.PictureBox Module4;
+        private System.Windows.Forms.PictureBox Module5;
+        private System.Windows.Forms.PictureBox Module6;
+        private System.Windows.Forms.PictureBox Module8;
+        private System.Windows.Forms.PictureBox Module7;
     }
 }
 

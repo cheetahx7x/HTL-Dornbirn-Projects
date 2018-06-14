@@ -125,6 +125,7 @@
     <None Include="Resources\Interface1.png" />
     <None Include="Resources\spaceshipm.png" />
     <None Include="Resources\spaceshipm1.png" />
+    <None Include="Resources\SUN.png" />
     <Content Include="Textbox.bmp" />
   </ItemGroup>
   <ItemGroup>
