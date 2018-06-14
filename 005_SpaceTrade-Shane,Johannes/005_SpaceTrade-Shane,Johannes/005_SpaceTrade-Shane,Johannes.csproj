@@ -126,6 +126,12 @@
     <None Include="Resources\spaceshipm.png" />
     <None Include="Resources\spaceshipm1.png" />
     <None Include="Resources\SUN.png" />
+    <None Include="Resources\Bridge.png" />
+    <None Include="Resources\storage.png" />
+    <None Include="Resources\mission-control.png" />
+    <None Include="Resources\hangar.png" />
+    <None Include="Resources\planetroom.png" />
+    <None Include="Resources\engineroom.png" />
     <Content Include="Textbox.bmp" />
   </ItemGroup>
   <ItemGroup>

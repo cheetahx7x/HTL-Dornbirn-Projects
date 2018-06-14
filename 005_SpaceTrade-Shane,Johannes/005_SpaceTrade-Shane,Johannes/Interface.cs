@@ -23,27 +23,41 @@ namespace _005_SpaceTrade_Shane_Johannes
 
         private void Interface_Load(object sender, EventArgs e)
         {
-            btn_next_sys.Enabled = false;
-            btn_next_sys.Visible = false;
-
+            btn_1.Enabled = false;
+            btn_1.Visible = false;
 
             if(Type == "Bridge")
             {
                 Bridge();
             }
+
+            if(Type == "Planet")
+            {
+                Planet();
+            }
         }
 
         private void Bridge()
         {
-            btn_next_sys.Enabled = true;
-            btn_next_sys.Visible = true;
+            this.BackgroundImage = _005_SpaceTrade_Shane_Johannes.Properties.Resources.mission_control;
+            btn_1.Text = "Start Resource gathering!";
+            btn_1.Enabled = true;
+            btn_1.Visible = true;
         }
 
-        private void btn_next_sys_Click(object sender, EventArgs e)
+        private void Planet()
         {
-            this.DialogResult = DialogResult.OK;
-            Action = "newsys";
-            this.Close();
+
+        }
+
+        private void btn_1_Click(object sender, EventArgs e)
+        {
+            if(Type == "Bridge")
+            {
+                this.DialogResult = DialogResult.OK;
+                Action = "newsys";
+                this.Close();
+            }
         }
     }
 }

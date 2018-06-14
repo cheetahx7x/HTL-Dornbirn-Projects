@@ -74,6 +74,10 @@ namespace _005_SpaceTrade_Shane_Johannes
 
             Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceshipm1);
             Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.SUN);
+            Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.storage);
+            Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.planetroom);
+            Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.hangar);
+            Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.engineroom);
             Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice1);
             Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.spacenice2);
             Assets.Add(_005_SpaceTrade_Shane_Johannes.Properties.Resources.spaceniceS1);
@@ -384,6 +388,10 @@ namespace _005_SpaceTrade_Shane_Johannes
             Modules[1].Location = new Point(Main_Picture.Location.X + 369, Main_Picture.Location.Y + 270);
             Modules[2].Location = new Point(Main_Picture.Location.X + 156, Main_Picture.Location.Y + 270);
             Modules[3].Location = new Point(Main_Picture.Location.X + 369, Main_Picture.Location.Y + 165);
+            Modules[0].Image = Assets[5];
+            Modules[1].Image = Assets[4];
+            Modules[2].Image = Assets[2];
+            Modules[3].Image = Assets[3];
         }
 
         private void Mothership_hide()
@@ -429,9 +437,6 @@ namespace _005_SpaceTrade_Shane_Johannes
         private void Gamestart()
         {
             Mothership_show();
-            //Mothership_hide();
-            //Generate_next_System();
-            //Show_Planets();
             this.Invalidate();
         }
 
@@ -468,23 +473,23 @@ namespace _005_SpaceTrade_Shane_Johannes
                 {
                     if (box.ShowDialog() == DialogResult.OK)
                     {
-                        if (box.Action == "newsys")
+                        if (box.Action == "")
                         {
-                            Generate_next_System();
+
                         }
                     }
                 }
             }
             else if(Main_Picture.Image == Assets[1])
             {
-                if(Module1.Image == Assets[2]|| Module1.Image == Assets[3])
+                if(Module1.Image == Assets[3]|| Module1.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if(Module1.Image == Assets[3] || Module1.Image == Assets[4])
+                else if(Module1.Image == Assets[5] || Module1.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -498,20 +503,14 @@ namespace _005_SpaceTrade_Shane_Johannes
         {
             if (Main_Picture.Image == Assets[0])
             {
-                using (Interface box = new Interface("Bridge"))
+                using (Interface box = new Interface("Storage"))
                 {
-                    if(box.ShowDialog() == DialogResult.OK)
-                    {
-                        if (box.Action == "newsys")
-                        {
-                            Generate_next_System();
-                        }
-                    }
+
                 }
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module2.Image == Assets[2] || Module2.Image == Assets[3])
+                if (Module2.Image == Assets[3] || Module2.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
@@ -528,7 +527,7 @@ namespace _005_SpaceTrade_Shane_Johannes
                         }
                     }
                 }
-                else if (Module2.Image == Assets[3] || Module2.Image == Assets[4])
+                else if (Module2.Image == Assets[5] || Module2.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -555,14 +554,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module3.Image == Assets[2] || Module3.Image == Assets[3])
+                if (Module3.Image == Assets[3] || Module3.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module3.Image == Assets[3] || Module3.Image == Assets[4])
+                else if (Module3.Image == Assets[5] || Module3.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -576,21 +575,27 @@ namespace _005_SpaceTrade_Shane_Johannes
         {
             if (Main_Picture.Image == Assets[0])
             {
-                using (Interface box = new Interface("Reactor"))
+                using (Interface box = new Interface("Bridge"))
                 {
-                    box.ShowDialog();
+                    if (box.ShowDialog() == DialogResult.OK)
+                    {
+                        if (box.Action == "newsys")
+                        {
+                            Generate_next_System();
+                        }
+                    }
                 }
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module4.Image == Assets[2] || Module4.Image == Assets[3])
+                if (Module4.Image == Assets[3] || Module4.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module4.Image == Assets[3] || Module4.Image == Assets[4])
+                else if (Module4.Image == Assets[5] || Module4.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -608,14 +613,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module5.Image == Assets[2] || Module5.Image == Assets[3])
+                if (Module5.Image == Assets[3] || Module5.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module5.Image == Assets[3] || Module5.Image == Assets[4])
+                else if (Module5.Image == Assets[5] || Module5.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -633,14 +638,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module6.Image == Assets[2] || Module6.Image == Assets[3])
+                if (Module6.Image == Assets[3] || Module6.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module6.Image == Assets[3] || Module6.Image == Assets[4])
+                else if (Module6.Image == Assets[5] || Module6.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -658,14 +663,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module7.Image == Assets[2] || Module7.Image == Assets[3])
+                if (Module7.Image == Assets[3] || Module7.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module7.Image == Assets[3] || Module7.Image == Assets[4])
+                else if (Module7.Image == Assets[5] || Module7.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -683,14 +688,14 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module8.Image == Assets[2] || Module8.Image == Assets[3])
+                if (Module8.Image == Assets[3] || Module8.Image == Assets[4])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
 
                     }
                 }
-                else if (Module8.Image == Assets[3] || Module8.Image == Assets[4])
+                else if (Module8.Image == Assets[5] || Module8.Image == Assets[5])
                 {
                     using (Interface box = new Interface("Station"))
                     {

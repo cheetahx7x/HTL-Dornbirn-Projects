@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_exit = new System.Windows.Forms.Button();
-            this.btn_next_sys = new System.Windows.Forms.Button();
+            this.btn_1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_exit
@@ -43,23 +43,23 @@
             this.btn_exit.Text = "X";
             this.btn_exit.UseVisualStyleBackColor = true;
             // 
-            // btn_next_sys
+            // btn_1
             // 
-            this.btn_next_sys.Location = new System.Drawing.Point(566, 515);
-            this.btn_next_sys.Name = "btn_next_sys";
-            this.btn_next_sys.Size = new System.Drawing.Size(122, 23);
-            this.btn_next_sys.TabIndex = 1;
-            this.btn_next_sys.Text = "Travel to next System";
-            this.btn_next_sys.UseVisualStyleBackColor = true;
-            this.btn_next_sys.Click += new System.EventHandler(this.btn_next_sys_Click);
+            this.btn_1.Location = new System.Drawing.Point(578, 576);
+            this.btn_1.Name = "btn_1";
+            this.btn_1.Size = new System.Drawing.Size(122, 23);
+            this.btn_1.TabIndex = 1;
+            this.btn_1.Text = "Travel to next System";
+            this.btn_1.UseVisualStyleBackColor = true;
+            this.btn_1.Click += new System.EventHandler(this.btn_1_Click);
             // 
             // Interface
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 550);
-            this.Controls.Add(this.btn_next_sys);
+            this.ClientSize = new System.Drawing.Size(700, 600);
+            this.Controls.Add(this.btn_1);
             this.Controls.Add(this.btn_exit);
             this.Font = new System.Drawing.Font("Modern No. 20", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -74,6 +74,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_exit;
-        private System.Windows.Forms.Button btn_next_sys;
+        private System.Windows.Forms.Button btn_1;
     }
 }

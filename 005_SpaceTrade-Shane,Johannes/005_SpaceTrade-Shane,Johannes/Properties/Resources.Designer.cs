@@ -63,9 +63,49 @@ namespace _005_SpaceTrade_Shane_Johannes.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap engineroom {
+            get {
+                object obj = ResourceManager.GetObject("engineroom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hangar {
+            get {
+                object obj = ResourceManager.GetObject("hangar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Interface1 {
             get {
                 object obj = ResourceManager.GetObject("Interface1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mission_control {
+            get {
+                object obj = ResourceManager.GetObject("mission_control", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap planetroom {
+            get {
+                object obj = ResourceManager.GetObject("planetroom", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,16 +143,6 @@ namespace _005_SpaceTrade_Shane_Johannes.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap spaceshipm {
-            get {
-                object obj = ResourceManager.GetObject("spaceshipm", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap spaceshipm1 {
             get {
                 object obj = ResourceManager.GetObject("spaceshipm1", resourceCulture);
@@ -123,9 +153,9 @@ namespace _005_SpaceTrade_Shane_Johannes.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap spaceshipnice1 {
+        internal static System.Drawing.Bitmap storage {
             get {
-                object obj = ResourceManager.GetObject("spaceshipnice1", resourceCulture);
+                object obj = ResourceManager.GetObject("storage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
