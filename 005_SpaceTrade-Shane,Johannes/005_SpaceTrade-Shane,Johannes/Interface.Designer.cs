@@ -36,6 +36,8 @@
             this.btn_3 = new System.Windows.Forms.Button();
             this.lbl_1 = new System.Windows.Forms.Label();
             this.lbl_2 = new System.Windows.Forms.Label();
+            this.txt_1 = new System.Windows.Forms.TextBox();
+            this.cmb_1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btn_exit
@@ -124,12 +126,29 @@
             this.lbl_2.Size = new System.Drawing.Size(0, 14);
             this.lbl_2.TabIndex = 7;
             // 
+            // txt_1
+            // 
+            this.txt_1.Location = new System.Drawing.Point(157, 12);
+            this.txt_1.Name = "txt_1";
+            this.txt_1.Size = new System.Drawing.Size(100, 19);
+            this.txt_1.TabIndex = 8;
+            // 
+            // cmb_1
+            // 
+            this.cmb_1.FormattingEnabled = true;
+            this.cmb_1.Location = new System.Drawing.Point(12, 12);
+            this.cmb_1.Name = "cmb_1";
+            this.cmb_1.Size = new System.Drawing.Size(121, 22);
+            this.cmb_1.TabIndex = 9;
+            // 
             // Interface
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 600);
+            this.Controls.Add(this.cmb_1);
+            this.Controls.Add(this.txt_1);
             this.Controls.Add(this.lbl_2);
             this.Controls.Add(this.lbl_1);
             this.Controls.Add(this.btn_3);
@@ -159,5 +178,7 @@
         private System.Windows.Forms.Button btn_3;
         private System.Windows.Forms.Label lbl_1;
         private System.Windows.Forms.Label lbl_2;
+        private System.Windows.Forms.TextBox txt_1;
+        private System.Windows.Forms.ComboBox cmb_1;
     }
 }

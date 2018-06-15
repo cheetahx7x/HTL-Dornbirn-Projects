@@ -51,6 +51,11 @@ namespace _005_SpaceTrade_Shane_Johannes
             {
                 Planet();
             }
+
+            if(Type == "Station")
+            {
+                Station();
+            }
         }
 
         private void Add_Tick(object sender, EventArgs e)
@@ -92,6 +97,17 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
         }
 
+        private void Station()
+        {
+            Show_Buttons(2);
+            for(int i = 0; i<Erze.Count();i++)
+            {
+                cmb_1.Items.Add(Erze[i]);
+            }
+            btn_1.Text = "Buy!";
+            btn_2.Text = "Sell!";
+        }
+
         private void btn_1_Click(object sender, EventArgs e)
         {
             if(Type == "Planet")
@@ -109,6 +125,10 @@ namespace _005_SpaceTrade_Shane_Johannes
                 Action = "newsys";
                 this.Close();
             }
+            if(Type == "Station")
+            {
+
+            }
         }
 
         private void btn_2_Click(object sender, EventArgs e)
@@ -120,6 +140,10 @@ namespace _005_SpaceTrade_Shane_Johannes
                 btn_1.Enabled = false;
                 btn_1.Visible = false;
                 btn_3.Text = "Stop Exploring!";
+            }
+            if(Type == "Station")
+            {
+
             }
         }
 
