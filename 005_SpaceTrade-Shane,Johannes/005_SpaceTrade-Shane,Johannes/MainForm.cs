@@ -61,6 +61,7 @@ namespace _005_SpaceTrade_Shane_Johannes
         List<Image> Assets = new List<Image>();
         Random rnd = new Random();
         Timer Planettick = new Timer();
+        List<string> Erze = new List<string>();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -436,6 +437,12 @@ namespace _005_SpaceTrade_Shane_Johannes
         
         private void Gamestart()
         {
+            conof.connect();
+            conof.Update("Update Erze set InvCount = 0 Where InvCount is NULL");
+            conof.disconnect();
+            conof.connect();
+            Erze = conof.Select("Select name from Erze", 0);
+            conof.disconnect();
             Mothership_show();
             this.Invalidate();
         }
@@ -446,10 +453,10 @@ namespace _005_SpaceTrade_Shane_Johannes
             CreateEllipses();
             for (int i = 0; i < ellipses.Count(); i++)
             {
-                int j = Randomint(2, 4);
+                int j = Randomint(6, 8);
                 Modules[i].BackColor = Color.Transparent;
-                Modules[i].Width = Assets[2].Width;
-                Modules[i].Height = Assets[2].Height;
+                Modules[i].Width = Assets[j].Width;
+                Modules[i].Height = Assets[j].Height;
                 Modules[i].Image = Assets[j];
             }
             Get_Planet_Points();
@@ -482,14 +489,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if(Main_Picture.Image == Assets[1])
             {
-                if(Module1.Image == Assets[3]|| Module1.Image == Assets[4])
+                if(Module1.Image == Assets[6]|| Module1.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i]+"'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if(Module1.Image == Assets[5] || Module1.Image == Assets[5])
+                else if(Module1.Image == Assets[8] || Module1.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -510,33 +525,28 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module2.Image == Assets[3] || Module2.Image == Assets[4])
+                if (Module2.Image == Assets[6] || Module2.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
                         if (box.ShowDialog() == DialogResult.OK)
                         {
-                            if (box.Action == "mine")
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
                             {
-
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
                             }
-                            else if (box.Action == "explore")
-                            {
-
-                            }
+                            conof.disconnect();
                         }
                     }
                 }
-                else if (Module2.Image == Assets[5] || Module2.Image == Assets[5])
+                else if (Module2.Image == Assets[8] || Module2.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
                         if (box.ShowDialog() == DialogResult.OK)
                         {
-                            if (box.Action == "")
-                            {
 
-                            }
                         }
                     }
                 }
@@ -554,14 +564,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module3.Image == Assets[3] || Module3.Image == Assets[4])
+                if (Module3.Image == Assets[6] || Module3.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module3.Image == Assets[5] || Module3.Image == Assets[5])
+                else if (Module3.Image == Assets[8] || Module3.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -588,14 +606,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module4.Image == Assets[3] || Module4.Image == Assets[4])
+                if (Module4.Image == Assets[6] || Module4.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module4.Image == Assets[5] || Module4.Image == Assets[5])
+                else if (Module4.Image == Assets[8] || Module4.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -613,14 +639,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module5.Image == Assets[3] || Module5.Image == Assets[4])
+                if (Module5.Image == Assets[6] || Module5.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module5.Image == Assets[5] || Module5.Image == Assets[5])
+                else if (Module5.Image == Assets[8] || Module5.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -638,14 +672,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module6.Image == Assets[3] || Module6.Image == Assets[4])
+                if (Module6.Image == Assets[6] || Module6.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module6.Image == Assets[5] || Module6.Image == Assets[5])
+                else if (Module6.Image == Assets[8] || Module6.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -663,14 +705,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module7.Image == Assets[3] || Module7.Image == Assets[4])
+                if (Module7.Image == Assets[6] || Module7.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module7.Image == Assets[5] || Module7.Image == Assets[5])
+                else if (Module7.Image == Assets[8] || Module7.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
@@ -688,14 +738,22 @@ namespace _005_SpaceTrade_Shane_Johannes
             }
             else if (Main_Picture.Image == Assets[1])
             {
-                if (Module8.Image == Assets[3] || Module8.Image == Assets[4])
+                if (Module8.Image == Assets[6] || Module8.Image == Assets[7])
                 {
                     using (Interface box = new Interface("Planet"))
                     {
-
+                        if (box.ShowDialog() == DialogResult.OK)
+                        {
+                            conof.connect();
+                            for (int i = 0; i < Erze.Count(); i++)
+                            {
+                                conof.Update("Update Erze set InvCount = InvCount + " + box.i_Result1[i] + " Where name = '" + Erze[i] + "'");
+                            }
+                            conof.disconnect();
+                        }
                     }
                 }
-                else if (Module8.Image == Assets[5] || Module8.Image == Assets[5])
+                else if (Module8.Image == Assets[8] || Module8.Image == Assets[8])
                 {
                     using (Interface box = new Interface("Station"))
                     {
